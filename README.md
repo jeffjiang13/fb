@@ -4,10 +4,10 @@
 This project is a clone of the popular social media platform, Facebook, built using the MERN stack (MongoDB, Express.js, React.js, Node.js, and Socket.io) With real time Messages and notifications 🔥.
 
 ## Demo
-https://backbook.vercel.app
+<!-- https://.vercel.app -->
 
 ## Backend Repository
-https://github.com/msobkyy/backbook-server
+https://github.com/jeffjiang13/fb-server
 
 ## Api Documentation
 [Documentation](https://documenter.getpostman.com/view/17180740/2s8Z73yrAk)
@@ -75,7 +75,7 @@ https://github.com/msobkyy/backbook-server
 - Clone the repository
 
 ```bash
-git clone https://github.com/jeffjiang13/facebook.git
+git clone https://github.com/jeffjiang13/fb.git
 ```
 
 - Install the dependencies
