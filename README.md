@@ -1,10 +1,20 @@
+<div align="center" id="top" className="mb-10">
+<img src="./public/icons/facebook.svg" alt="FB_2023" width="150" height="150" />
+
+&#xa0;
+
+  <img src="./public/Screenshot.png" alt="FB_2023" />
+
+<a href="https://jj-fb.vercel.app">Demo</a>
+
+</div>
+
 
 # facebook
 
 This project is a sophisticated emulation of the renowned social media platform, Facebook, constructed utilizing the MERN stack - MongoDB, Express.js, React.js, and Node.js - and enhanced with the real-time capabilities of Socket.io. It delivers dynamic and interactive user experiences, including real-time messaging and notifications, mirroring the functionality of its mainstream counterpart 🔥.
 
-## Demo
-https://jj-fb.vercel.app
+
 
 ## Backend Repository
 https://github.com/jeffjiang13/fb-server
