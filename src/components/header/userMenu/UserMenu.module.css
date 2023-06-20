@@ -159,3 +159,22 @@
   align-items: center;
   justify-content: center;
 }
+.mmenu_item:hover .small_circle {
+
+  background: #D3D3D3;
+}
+.mmenu_span1:hover .small_circle {
+
+  background: #D3D3D3;
+}
+.mmenu_span2:hover .small_circle {
+
+  background: #D3D3D3;
+}
+.mmenu_item:hover .small_circle {
+
+  background: #D3D3D3;
+}
+.mmenu_main:hover .small_circle {
+  background: #D3D3D3;
+}

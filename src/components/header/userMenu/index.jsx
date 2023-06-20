@@ -47,7 +47,7 @@ export default function UserMenu({ user, setShowUserMenu }) {
         <div>
           <Link
             to="/profile"
-            className={`${styles.mmenu_header} hover3`}
+            className={`${styles.mmenu_header} hover1`}
             onClick={() => setShowUserMenu(false)}
           >
             <img src={user?.photo} alt="" />
@@ -59,7 +59,7 @@ export default function UserMenu({ user, setShowUserMenu }) {
             </div>
           </Link>
           <div className={styles.mmenu_splitter}></div>
-          <div className={`${styles.mmenu_main} hover3`}>
+          <div className={`${styles.mmenu_main} hover1`}>
             <div className={styles.small_circle}>
               <i className="report_filled_icon"></i>
             </div>
@@ -70,7 +70,7 @@ export default function UserMenu({ user, setShowUserMenu }) {
           </div>
           <div className={styles.mmenu_splitter}></div>
           <div
-            className={`${styles.mmenu_item} hover3`}
+            className={`${styles.mmenu_item} hover1`}
             onClick={() => {
               setVisible(1);
             }}
@@ -84,7 +84,7 @@ export default function UserMenu({ user, setShowUserMenu }) {
             </div>
           </div>
           <div
-            className={`${styles.mmenu_item} hover3`}
+            className={`${styles.mmenu_item} hover1`}
             onClick={() => {
               setVisible(2);
             }}
@@ -98,7 +98,7 @@ export default function UserMenu({ user, setShowUserMenu }) {
             </div>
           </div>
           <div
-            className={`${styles.mmenu_item} hover3`}
+            className={`${styles.mmenu_item} hover1`}
             onClick={() => {
               setVisible(3);
             }}
@@ -112,7 +112,7 @@ export default function UserMenu({ user, setShowUserMenu }) {
             </div>
           </div>
           <div
-            className={`${styles.mmenu_item} hover3 click`}
+            className={`${styles.mmenu_item} hover1 click`}
             onClick={() => {
               logoutHandler();
             }}

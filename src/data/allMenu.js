@@ -172,7 +172,7 @@ export const user_menu1 = [
     icon: "settings_filled_icon",
   },
   {
-    name: "Privacy Chekup",
+    name: "Privacy Checkup",
     icon: "privacy_checkup_icon",
   },
   {

@@ -1,3 +1,13 @@
+.imageSmall {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.noInfo {
+  margin-left: 30px;
+}
 .wrap {
   display: flex;
   align-items: center;
@@ -78,7 +88,12 @@
 
 .info_profile img {
   filter: invert(40%);
+
 }
 .underline:hover {
   text-decoration: underline;
+}
+.underline {
+  color: hsl(214, 89%, 52%);
+
 }

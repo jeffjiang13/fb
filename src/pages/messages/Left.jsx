@@ -12,6 +12,8 @@ import SeenStatus from "./SeenStatus";
 import { Dots, Search } from "../../svg";
 import SearchUser from "../../components/messages/SearchUser";
 import CreateGroup from "../../components/messages/createGroup/CreateGroup";
+import CreateChat from "../../components/messages/createGroup/CreateChat";
+
 import { useNavigate } from "react-router-dom";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import { useGetChat } from "../../hooks/useGetChat";
@@ -21,12 +23,17 @@ import Skeleton from "react-loading-skeleton";
 function Left({ soketSlice, user, chatId }) {
   const input = useRef();
   const menuRef = useRef();
+  const menuChatRef = useRef();
+
   let navigate = useNavigate();
 
   const [showIcon, setShowIcon] = useState(true);
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showCreateGroup, setShowCreateGroup] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [showCreateChat, setShowCreateChat] = useState(false);
+  const [showChatMenu, setShowChatMenu] = useState(false);
+
   const color = "#65676b";
   const renderMessage = (message) => {
     if (message.length > 30) {
@@ -60,6 +67,9 @@ function Left({ soketSlice, user, chatId }) {
     setShowMenu(false);
   });
 
+  useOnClickOutside(menuChatRef, showChatMenu, () => {
+    setShowChatMenu(false);
+  });
   const {
     mutate: getChat,
     data: chatData,
@@ -77,39 +87,117 @@ function Left({ soketSlice, user, chatId }) {
     getChat({ user: id });
   };
 
+  function StartChatIcon() {
+    return (
+      <div
+        style={{
+          backgroundImage:
+            "url('https://static.xx.fbcdn.net/rsrc.php/v3/yu/r/StbI0micuZc.png')",
+          backgroundPosition: "0px -636px",
+          backgroundSize: "26px 1622px",
+          width: "20px",
+          height: "20px",
+          backgroundRepeat: "no-repeat",
+          display: "inline-block",
+        }}
+      />
+    );
+  }
+  function VideoIcon() {
+    return (
+      <i
+        style={{
+          backgroundImage:
+            "url('https://static.xx.fbcdn.net/rsrc.php/v3/yu/r/StbI0micuZc.png')",
+          backgroundPosition: "0px -218px",
+          backgroundSize: "26px 1622px",
+          width: "20px",
+          height: "20px",
+          backgroundRepeat: "no-repeat",
+          display: "inline-block",
+        }}
+      />
+    );
+  }
+
   return (
     <div className={styles.left}>
       <div className={styles.left_header}>
         <div className={styles.left_header_top}>
           <h2>Chats</h2>
           <div className={styles.menu_wrap}>
-            <div
-              onClick={() => {
-                setShowMenu(true);
-              }}
-              className={styles.circle_icon}
-            >
-              <Dots />
+            <div className={styles.menu_wrap}>
+              <div
+                onClick={() => {
+                  setShowMenu(true);
+                }}
+                className={styles.circle_icon}
+              >
+                <Dots />
+              </div>
+              {showMenu && (
+                <Card innerRef={menuRef} className={styles.menu}>
+                  <ul>
+                    <li
+                      className="hover1"
+                      onClick={() => {
+                        setShowCreateGroup(true);
+                      }}
+                    >
+                      <i className="create_icon"></i>
+                      <div className={styles.menu_text}>
+                        <span>Create Group</span>
+                        <span className={styles.menu_col}>
+                          Create Group to chat with your contacts
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </Card>
+              )}
+              <div
+                onClick={() => {
+                  // setShowMenu(true);
+                }}
+                className={styles.circle_icon}
+              >
+                <VideoIcon />
+              </div>
+              <div
+                onClick={() => {
+                  setShowChatMenu(true);
+                }}
+                className={styles.circle_icon}
+              >
+                <StartChatIcon />
+              </div>
+              {showChatMenu && (
+                <Card innerRef={menuChatRef} className={styles.menu}>
+                  <ul>
+                    <li
+                      className="hover1"
+                      onClick={() => {
+                        setShowCreateChat(true);
+                      }}
+                    >
+                      <i className="create_icon"></i>
+                      <div className={styles.menu_text}>
+                        <span>Create Chat</span>
+                        <span className={styles.menu_col}>
+                          Create chat with your contacts
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </Card>
+              )}
             </div>
-            {showMenu && (
-              <Card innerRef={menuRef} className={styles.menu}>
-                <ul>
-                  <li
-                    className="hover1"
-                    onClick={() => {
-                      setShowCreateGroup(true);
-                    }}
-                  >
-                    <i className="create_icon"></i>
-                    <div className={styles.menu_text}>
-                      <span>Create Group</span>
-                      <span className={styles.menu_col}>
-                        Create Group to chat with your contacts
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </Card>
+            {showCreateChat && (
+              <CreateChat
+                type="create"
+                setShowCreateChat={setShowCreateChat}
+                showCreateChat={showCreateChat}
+              />
             )}
           </div>
           {showCreateGroup && (

@@ -165,6 +165,13 @@
   cursor: pointer;
 }
 
+.circle_icon:hover {
+  background: #D3D3D3;
+}
+:global(.dark) .circle_icon:hover {
+  background: var(--blue-color);
+  color: var(--color-primary);
+}
 .active_header {
   background: var(--light-blue-color);
 }

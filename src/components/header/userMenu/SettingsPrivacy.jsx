@@ -16,7 +16,7 @@ export default function SettingsPrivacy({ setVisible }) {
         Settings & privacy
       </div>
       {user_menu1.map(({ name, icon }, i) => (
-        <div className={`${styles.mmenu_item} hover3`} key={i}>
+        <div className={`${styles.mmenu_item} hover1`} key={i}>
           <div className={styles.small_circle}>
             <i className={icon}></i>
           </div>

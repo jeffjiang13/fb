@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback,  useEffect,  } from "react";
 import { Link } from "react-router-dom";
 import Card from "../../components/UI/Card/Card";
 import classes from "./style.module.css";
@@ -6,10 +6,19 @@ import PuffLoader from "react-spinners/PuffLoader";
 import Skeleton from "react-loading-skeleton";
 import ImageViewer from "react-simple-image-viewer";
 import Portal from "../../utils/Portal";
-import AllPhotos from "./AllPhotos";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 function Photos({ photosData, photosSkelton }) {
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const { userId } = useParams();
+  const [photos, setPhotos] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const user = useSelector((state) => ({ ...state.user.userinfo }));
+  const { username } = useParams();
+  const usernameID = username ? username : user.username;
+  const isVisitor = !(usernameID === user.username);
 
   const openImageViewer = useCallback((index) => {
     setCurrentImage(index);
@@ -22,7 +31,7 @@ function Photos({ photosData, photosSkelton }) {
   };
 
   const filterImages = (resources) => {
-    return resources.filter((resource) => resource.url.includes(".webp")); // Change the extension as per your requirement
+    return resources.filter((resource) => resource.url.includes(".webp"));
   };
 
   const images = photosData.resources
@@ -33,7 +42,7 @@ function Photos({ photosData, photosSkelton }) {
     <Card className={classes.photos}>
       <div className={classes.card_header}>
         Photos
-        <Link className={classes.link} to="/allphotos">
+        <Link className={classes.link} to={`/allphotos/${usernameID}`}>
           See all photos
         </Link>
       </div>
@@ -76,11 +85,7 @@ function Photos({ photosData, photosSkelton }) {
             />
           </Portal>
         )}
-                      {photosData && (
-                <AllPhotos
-                  photosData={photosData?.data}
-                />
-              )}
+
       </div>
     </Card>
   );

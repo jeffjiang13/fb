@@ -1,7 +1,7 @@
 .stories {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(6, 105px);
+  grid-template-columns: repeat(9, 105px);
   gap: 10px;
   padding: 6px 0;
   max-width: 590px;
@@ -13,9 +13,17 @@
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
-  background: var(--bg-third);
+  /* background: var(--bg-third); */
   cursor: pointer;
-  box-shadow: 0 1px 2px var(--sahdow-1);
+  box-shadow: 0 1px 2px silver;
+}
+.create_story_card:hover{
+  background: #DDDDDD;
+}
+.create_story_card:hover .create_story_img {
+  filter: brightness(90%);
+  transition: all 0.2s;
+  transform: scale(1.05);
 }
 
 .create_story_img {
@@ -23,7 +31,6 @@
   height: 75%;
   width: 100%;
   object-fit: cover;
-  filter: brightness(80%);
 }
 
 .plus_story {
@@ -51,10 +58,10 @@
 
 }
 
-.create_story_img:hover {
+/* .create_story_img:hover {
   transition: all 0.2s;
   transform: scale(1.1);
-}
+} */
 .story {
   cursor: pointer;
   position: relative;
@@ -73,7 +80,9 @@
 }
 
 .story:hover .story_img {
-  transform: scale(1.1);
+  transform: scale(1.05);
+  filter: brightness(80%);
+
 }
 
 .story_profile_pic {
@@ -84,7 +93,7 @@
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid var(--blue-color);
+  border: 3.5px solid var(--blue-color);
 }
 
 .story_profile_pic img {

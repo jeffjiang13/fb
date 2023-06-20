@@ -1,3 +1,35 @@
+.seeAllButton {
+  border: none;
+  outline: none;
+  background: var(--bg-third);
+  padding: 8.5px 12px;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  width: 100%; /* Add this line */
+
+}
+.seeAllButton:hover {
+  background: #C9C9C9;
+}
+:global(.dark) .seeAllButton:hover {
+  background: var(--blue-color);
+  color: var(--color-primary);
+}
+@media only screen and (max-width: 768px) {
+  .profile_menu,
+  .middle_icon
+  {
+    /* display: none; */
+  }
+}
 .profile {
   margin-top: 58px;
 }
@@ -109,6 +141,8 @@
   border-bottom: 4px solid var(--blue-color);
   margin-bottom: -3px;
 }
+
+
 
 .bottom {
   display: flex;

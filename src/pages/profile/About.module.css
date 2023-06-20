@@ -1,0 +1,97 @@
+.container {
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: 90%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.allPhotos {
+  padding: 20px;
+}
+
+.photo_grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-items: start;
+  margin-top: 15px;
+  min-width: 1100px;
+  grid-gap: 1px
+
+}
+@media screen and (min-width: 801px) and (max-width: 1200px) {
+  .photo_grid {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 15px;
+      min-height: 300px;
+      min-width: 750px
+  }
+
+}
+@media screen and (min-width: 701px) and (max-width: 800px) {
+  .photo_grid {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 15px;
+      min-height: 300px;
+      min-width: 650px
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 700px) {
+  .photo_grid {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 15px;
+    min-height: 300px;
+    min-width: 300px
+  }
+
+}
+@media screen and (max-width: 600px) {
+  .photo_grid {
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 15px;
+      min-height: 300px;
+      min-width: 200px
+  }
+  .photo {
+    width: 163px !important;
+    height: 163px !important;
+  }
+}
+
+.photos {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.photo {
+  width: 180px;
+  height: 180px;
+
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card_header {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+:global(.dark) .more svg {
+  fill: #fff;
+}
+.more {
+  display: flex;
+}

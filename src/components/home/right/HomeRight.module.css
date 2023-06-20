@@ -1,3 +1,8 @@
+.carouselImage {
+  width: 320px;  /* Adjust as needed */
+  height: 170px;  /* Keeps the aspect ratio */
+}
+
 .right_home {
   position: fixed;
   right: 20px;

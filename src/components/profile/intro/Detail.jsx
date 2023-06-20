@@ -15,35 +15,59 @@ function Detail({
   max,
   details,
   rel,
+  isVisitor,
+  isURL = false
 }) {
   const [show, setShow] = useState(false);
-
   const editAreaRef = useRef(null);
 
   useOnClickOutside(editAreaRef, show, () => {
     setShow(false);
   });
+  const imgSrc = isURL ? img : `../../../icons/${img}.png`;
+
   return (
     <div>
-      <div
-        className={classes.add_details_flex}
-        onClick={() => setShow(true)}
-        ref={editAreaRef}
-      >
-        {value ? (
-          <div className={classes.info_profile}>
-            <img src={`../../../icons/${img}.png`} alt="" />
-            {value}
-            <i className="edit_icon" style={{ marginLeft: "auto" }}></i>
-          </div>
-        ) : (
-          <>
-            <i className="rounded_plus_icon"></i>
-            <span className={classes.underline}>Add {text}</span>
-          </>
-        )}
-      </div>
-      {show && (
+      {!isVisitor ? (
+        <div
+          className={classes.add_details_flex}
+          onClick={() => setShow(true)}
+          ref={editAreaRef}
+        >
+          {value ? (
+            <div className={classes.info_profile}>
+              <img
+                src={imgSrc}
+                alt=""
+                className={classes.imageSmall}
+              />
+              {value}
+              <i className="edit_icon" style={{ marginLeft: "auto" }}></i>
+            </div>
+          ) : (
+            <>
+              <i className="rounded_plus_icon"></i>
+              <span className={classes.underline}>Add {text}</span>
+            </>
+          )}
+        </div>
+      ) : (
+        <div className={classes.add_details_flex}>
+          {value ? (
+            <div className={classes.info_profile}>
+              <img
+                src={imgSrc}
+                alt=""
+                className={classes.imageSmall}
+              />
+              {value}
+            </div>
+          ) : (
+            <div className={classes.noInfo}>No info to show</div>
+          )}
+        </div>
+      )}
+      {!isVisitor && show && (
         <EditArea
           innerRef={editAreaRef}
           placeholder={placeholder}

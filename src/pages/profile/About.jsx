@@ -1,30 +1,36 @@
 import React, { useEffect, useState, useRef } from "react";
 import classes from "./style.module.css";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import ProfileMenu from "./ProfileMenu";
+import Post from "../../components/posts/post";
 import Card from "../../components/UI/Card/Card";
+import Photos from "./Photos";
+import Friends from "./Friends";
 import ProfilePhoto from "../../components/profile/profilePhoto/ProfilePhoto";
 import Cover from "../../components/profile/cover/Cover";
 import CoverClasses from "../../components/profile/cover/Cover.module.css";
+import AboutComponent from "../../components/profile/intro/about";
 import useWindowDimensions from "../../hooks/useWindowDimensions ";
 import Friendship from "./Friendship";
+import { useInView } from "react-intersection-observer";
+import CreatePost from "../../components/home/posts/CreatePost/CreatePost";
 import Skeleton from "react-loading-skeleton";
+import PostSkeleton from "../../components/skeleton/PostSkeleton";
 import { useNavigate } from "react-router-dom";
+import classe from "./About.module.css";
+import styles from "./FriendsList.module.css";
+import { NavLink, Link } from "react-router-dom";
+import { Dots } from "../../svg";
+import { Search } from "../../svg";
 import ImageViewer from "react-simple-image-viewer";
 import Portal from "../../utils/Portal";
-import classe from "./AllPhotos.module.css";
-import { Dots } from "../../svg";
-import { NavLink, Link } from "react-router-dom";
-import styles from "./FriendsList.module.css";
-import * as createPostSlice from "../../app/slices/createPostSlice";
 
-function AllPhotos({ data }) {
+function About(color) {
   const user = useSelector((state) => ({ ...state.user.userinfo }));
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [showProfilePhoto, setShowProfilePhoto] = useState(false);
   const [detailsHeight, setDetailsHeight] = useState();
@@ -33,11 +39,8 @@ function AllPhotos({ data }) {
   const pRef = useRef(null);
   const detailsRef = useRef(null);
   const { height } = useWindowDimensions();
-  const { userId } = useParams();
-
-  useEffect(() => {
-    fetchPhotos();
-  }, [userId]);
+  const { ref, inView } = useInView();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const usernameID = username ? username : user.username;
   const isVisitor = !(usernameID === user.username);
@@ -62,6 +65,15 @@ function AllPhotos({ data }) {
     return data;
   };
 
+  const fetchPosts = async ({ pageParam = 1 }) => {
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/v1/users/getProfile/${usernameID}/posts?sort=-createdAt&limit=10&page=${pageParam}`,
+      {
+        withCredentials: true,
+      }
+    );
+    return data;
+  };
   const {
     isLoading: profileLoading,
     isError: profileError,
@@ -88,12 +100,36 @@ function AllPhotos({ data }) {
     staleTime: Infinity,
   });
 
+  const {
+    isLoading: postsLoading,
+    isSuccess: postsIsSuccess,
+    data: postsData,
+    isError: postsError,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetching: postsIsFetching,
+  } = useInfiniteQuery({
+    queryKey: ["getProfilePosts", usernameID],
+    queryFn: fetchPosts,
+    getNextPageParam: (lastPage, pages) => {
+      if (lastPage.length < 10) {
+        return undefined;
+      } else {
+        return pages.length + 1;
+      }
+    },
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    staleTime: Infinity,
+  });
   const userData = profileData?.data?.user;
   const userFriends = profileData?.data?.friends;
   const friendshipData = profileData?.data?.friendship;
 
   const profileSkelton = profileLoading || profileIsFetching;
   const photosSkelton = photosLoading || photosIsFetching;
+  const postsSkelton = postsLoading || postsIsFetching;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -108,14 +144,21 @@ function AllPhotos({ data }) {
   }, [showProfilePhoto]);
 
   useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
+
+  useEffect(() => {
     setDetailsHeight(detailsRef.current?.clientHeight);
   }, [detailsRef.current?.clientHeight, profileData, photosData]);
 
   useEffect(() => {
-    if (profileError || photosError) {
+    if (profileError || photosError || postsError) {
       navigate("/404");
     }
-  }, [profileError, photosError]);
+  }, [profileError, photosError, postsError]);
+  console.log(profileData);
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const filterImages = (resources) => {
@@ -135,14 +178,11 @@ function AllPhotos({ data }) {
     setCurrentImage(0);
     setIsViewerOpen(false);
   };
-
-  if (profileLoading || photosLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (profileError || photosError) {
-    return <div>Error occurred!</div>;
-  }
+  const filteredFriends = profileData?.data.friends.filter((friend) =>
+    `${friend?.first_name} ${friend?.last_name}`
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
   return (
     <div className={classes.profile}>
       <div className={classes.top}>
@@ -270,9 +310,7 @@ function AllPhotos({ data }) {
                 ))}
             </div>
           </div>
-
           <div className="line"></div>
-
           <ProfileMenu />
         </div>
       </div>
@@ -294,7 +332,162 @@ function AllPhotos({ data }) {
         </div>
       </div>
       <div className={classe.wrapper}>
-        <Card className={classe.photos}>
+        <div>
+          <Card className={styles.friends}>
+            <h2>About</h2>
+            <AboutComponent
+              userData={userData}
+              isVisitor={isVisitor}
+              showEdit={showEdit}
+              setShowEdit={setShowEdit}
+              profileSkelton={profileSkelton}
+            />
+          </Card>
+        </div>
+      </div>
+      <br />
+      <div className={classe.wrapper}>
+        <Card className={styles.friends}>
+          <div style={{ position: "relative" }}>
+            {profileData && profileData?.data && <h2>Friends</h2>}
+            <div
+              className={classe.more}
+              style={{ position: "absolute", top: 0, right: 0 }}
+            >
+              {/* <div className={styles.search}>
+                <Search color={color} />
+                <input
+                  className={styles.input}
+                  type="text"
+                  placeholder="Search"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div> */}
+              <div className={styles.buttons}>
+                {!isVisitor && (
+                  <>
+                    <Link
+                      to={`/friends/requests`}
+                      className={`${styles.requestButton} hover2`}
+                    >
+                      Friend Requests
+                    </Link>
+                    <Link
+                      to={`/friends`}
+                      className={`${styles.findButton} hover2`}
+                    >
+                      Find Friends
+                    </Link>
+                    <button className="gray_btn">
+                      <Dots />
+                    </button>{" "}
+                  </>
+                )}{" "}
+              </div>{" "}
+            </div>
+            <div className={classes.profile_menu}>
+              <NavLink
+                to={`#`}
+                className={({ isActive }) =>
+                  isActive
+                    ? `${classes.active} ${classes.middle_icon}`
+                    : `${classes.middle_icon} hover2`
+                }
+              >
+                All friends
+              </NavLink>
+
+              {!isVisitor ? (
+                <NavLink
+                  to={`#`}
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${classes.activ} ${classes.middle_icon}`
+                      : `${classes.middle_icon} hover2`
+                  }
+                >
+                  Following
+                </NavLink>
+              ) : (
+                <>
+                  <NavLink
+                    to={`#`}
+                    className={({ isActive }) =>
+                      isActive
+                        ? `${classes.activ} ${classes.middle_icon}`
+                        : `${classes.middle_icon} hover2`
+                    }
+                  >
+                    Mutual Friends
+                  </NavLink>
+                  <NavLink
+                    to={`#`}
+                    className={({ isActive }) =>
+                      isActive
+                        ? `${classes.activ} ${classes.middle_icon}`
+                        : `${classes.middle_icon} hover2`
+                    }
+                  >
+                    Current city
+                  </NavLink>
+                  <NavLink
+                    to={`#`}
+                    className={({ isActive }) =>
+                      isActive
+                        ? `${classes.activ} ${classes.middle_icon}`
+                        : `${classes.middle_icon} hover2`
+                    }
+                  >
+                    Hometown
+                  </NavLink>
+                  <NavLink
+                    to={`#`}
+                    className={({ isActive }) =>
+                      isActive
+                        ? `${classes.activ} ${classes.middle_icon}`
+                        : `${classes.middle_icon} hover2`
+                    }
+                  >
+                    Following
+                  </NavLink>
+                </>
+              )}
+            </div>
+          </div>
+          <div className={styles.friends_grid}>
+            {filteredFriends?.length > 0 ? (
+              filteredFriends.slice(0, 4).map((friend, index) => (
+                <div key={index} className={styles.friend}>
+                  <Link to={`/profile/${friend?.username}`}>
+                    <img src={friend?.photo} alt={friend?.name} />
+                  </Link>
+                  <h4 className={styles.name}>
+                    <Link className={styles.link} to={`/profile/${friend?.username}`}>
+                      {`${friend?.first_name} ${friend?.last_name}`}
+                    </Link>{" "}
+                    <Dots />
+                  </h4>
+                </div>
+              ))
+            ) : (
+              <p className={styles.result}>No results for: {searchTerm}</p>
+            )}
+          </div>
+          <br />
+          {profileData?.data.friends.length > 4 && (
+            <button
+              className={classes.seeAllButton}
+              onClick={() => navigate(`/friendslist/${usernameID}`)}
+            >
+              See All
+            </button>
+          )}
+        </Card>
+      </div>
+      <br />
+      <div className={classe.wrapper}>
+        <Card className={styles.friends}>
           <div style={{ position: "relative" }}>
             {" "}
             {profileData && profileData.data && <h2>Photos</h2>}
@@ -305,14 +498,6 @@ function AllPhotos({ data }) {
               {" "}
               {!isVisitor && (
                 <>
-                  <div
-                    onClick={() => {
-                      dispatch(createPostSlice.open("photo"));
-                    }}
-                    className={`${styles.requestButton} hover2`}
-                  >
-                    Add photos/video
-                  </div>
                   <button className="gray_btn">
                     <Dots />
                   </button>
@@ -393,7 +578,7 @@ function AllPhotos({ data }) {
             )}
           </div>
           <div className={classe.photo_grid}>
-            {images.map((src, index) => (
+            {images.slice(0, 10).map((src, index) => (
               <img
                 src={src}
                 className={classe.photo}
@@ -404,6 +589,15 @@ function AllPhotos({ data }) {
               />
             ))}
           </div>
+          <br />
+          {images.length > 10 && (
+            <button
+              className={classes.seeAllButton}
+              onClick={() => navigate(`/allphotos/${usernameID}`)}
+            >
+              See All
+            </button>
+          )}
           {isViewerOpen && (
             <Portal>
               <ImageViewer
@@ -417,8 +611,9 @@ function AllPhotos({ data }) {
           )}
         </Card>
       </div>
+      <br />
     </div>
   );
 }
 
-export default AllPhotos;
+export default About;

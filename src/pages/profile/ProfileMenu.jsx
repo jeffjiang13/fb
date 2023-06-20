@@ -1,26 +1,62 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Dots } from "../../svg";
 import classes from "./style.module.css";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function ProfileMenu() {
+  const user = useSelector((state) => ({ ...state.user.userinfo }));
+  const { username } = useParams();
+  const usernameID = username ? username : user.username;
+  const isVisitor = !(usernameID === user.username);
   return (
     <div className={classes.profile_menu_wrap}>
       <div className={classes.profile_menu}>
-        <Link to="#" className={classes.active}>
+        <NavLink
+          to={`/profile/${usernameID}`}
+          className={({ isActive }) =>
+            isActive
+              ? `${classes.active} ${classes.middle_icon}`
+              : `${classes.middle_icon} hover2`
+          }
+        >
           Posts
-        </Link>
-        <Link to="#" className="hover1">
+        </NavLink>
+        <NavLink
+          to={`/about/${usernameID}`}
+          className={({ isActive }) =>
+            isActive
+              ? `${classes.active} ${classes.middle_icon}`
+              : `${classes.middle_icon} hover2`
+          }
+        >
           About
-        </Link>
-        <Link to="#" className="hover1">
+        </NavLink>
+        <NavLink
+          to={`/friendslist/${usernameID}`}
+          className={({ isActive }) =>
+            isActive
+              ? `${classes.active} ${classes.middle_icon}`
+              : `${classes.middle_icon} hover2`
+          }
+        >
           Friends
-        </Link>
-        <Link to="#" className="hover1">
+        </NavLink>
+        <NavLink
+          to={`/allphotos/${usernameID}`}
+          className={({ isActive }) =>
+            isActive
+              ? `${classes.active} ${classes.middle_icon}`
+              : `${classes.middle_icon} hover2`
+          }
+        >
           Photos
-        </Link>
+        </NavLink>
       </div>
       <div className={classes.more}>
-        <Dots />
+        <button className="gray_btn">
+          <Dots />
+        </button>{" "}
       </div>
     </div>
   );

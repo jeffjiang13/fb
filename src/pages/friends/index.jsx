@@ -5,15 +5,30 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import FriendCard from "./FreindCard";
 import Skeleton from "react-loading-skeleton";
+import { useSelector } from "react-redux";
 
 function FriendsPage() {
   const { type } = useParams();
-
+  const user = useSelector((state) => ({ ...state.user.userinfo }));
+  const userId = user?._id;
   const { isLoading, isFetching, data, refetch, isSuccess } = useQuery({
     queryKey: ["getFriendsPage"],
     queryFn: async () => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/v1/friends/friendsPage`,
+        {
+          withCredentials: true,
+        }
+      );
+      return data;
+    },
+    refetchOnWindowFocus: false,
+  });
+  const { data: allUsersData, isSuccess: isAllUsersSuccess } = useQuery({
+    queryKey: ["getAllUsers"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/users`,
         {
           withCredentials: true,
         }
@@ -93,9 +108,10 @@ function FriendsPage() {
                 <i className="right_icon"></i>
               </div>
             </Link>
-            <div
+            <Link
+              to="/friends/suggestions"
               className={`${classes.menu_item} hover3 ${
-                type === "all" && "active_friends"
+                type === "suggestions" && classes.active_friends
               }`}
             >
               <div className="small_circle">
@@ -105,7 +121,7 @@ function FriendsPage() {
               <div className={classes.rArrow}>
                 <i className="right_icon"></i>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
         <div className={classes.right}>
@@ -131,9 +147,9 @@ function FriendsPage() {
                   ? data?.data.recivedRequests.map((request) => (
                       <FriendCard
                         user={request.sender}
-                        key={request._id}
+                        key={request?._id}
                         type="request"
-                        requestId={request._id}
+                        requestId={request?._id}
                         refetch={refetch}
                       />
                     ))
@@ -162,9 +178,9 @@ function FriendsPage() {
                   ? data?.data.sentRequests.map((request) => (
                       <FriendCard
                         user={request.recipient}
-                        key={request._id}
+                        key={request?._id}
                         type="sent"
-                        requestId={request._id}
+                        requestId={request?._id}
                         refetch={refetch}
                       />
                     ))
@@ -191,9 +207,40 @@ function FriendsPage() {
                 )}
                 {data?.data.friendLists && data?.data.friendLists.length > 0
                   ? data?.data.friendLists.map((user) => (
-                      <FriendCard user={user} key={user._id} type="friends" />
+                      <FriendCard user={user} key={user?._id} type="friends" />
                     ))
                   : isSuccess && !isLoading && <p>No friends</p>}
+              </div>
+            </div>
+          )}
+          {(type === undefined || type === "suggestions") && (
+            <div className={classes.friends_right_wrap}>
+              <div className={classes.friends_left_header}>
+                <h3>Suggestions (All Users)</h3>
+                {type === undefined && (
+                  <Link
+                    to="/friends/suggestions"
+                    className={`${classes.see_link} hover3`}
+                  >
+                    See all
+                  </Link>
+                )}
+              </div>
+              <div className={classes.flex_wrap}>
+                {friendsSkelton && (
+                  <Skeleton className={classes.req_card} height={200} />
+                )}
+                {allUsersData?.data.users && allUsersData?.data.users.length > 0
+                  ? allUsersData?.data.users
+                      .filter((user) => user._id !== userId)
+                      .map((user) => (
+                        <FriendCard
+                          user={user}
+                          key={user?._id}
+                          type="suggestion"
+                        />
+                      ))
+                  : isAllUsersSuccess && !isLoading && <p>No users found</p>}
               </div>
             </div>
           )}

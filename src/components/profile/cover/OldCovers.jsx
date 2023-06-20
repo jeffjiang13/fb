@@ -10,6 +10,11 @@ function OldCovers({ setShowOldCover, setImage, photosData, showOldCover }) {
     setShowOldCover(false);
   });
 
+  // Define the filterImages function
+  const filterImages = (resources) => {
+    return resources.filter((resource) => resource.url.includes(".webp")); // Change the extension as per your requirement
+  };
+
   return (
     <div className={`${classes.wrap} blur`}>
       <Card className={classes.card} innerRef={oldCoversCardRef}>
@@ -24,7 +29,7 @@ function OldCovers({ setShowOldCover, setImage, photosData, showOldCover }) {
             <>
               <div>Choose from old cover picture</div>
               <div className={classes.old_photos}>
-                {photosData?.profileCovers.map((photo) => (
+                {filterImages(photosData?.profileCovers).map((photo) => (
                   <img
                     src={photo.url}
                     alt={photo.id}
@@ -42,7 +47,7 @@ function OldCovers({ setShowOldCover, setImage, photosData, showOldCover }) {
             <>
               <div>Choose from your profile photos</div>
               <div className={classes.old_photos}>
-                {photosData?.resources.map((photo) => (
+                {filterImages(photosData?.resources).map((photo) => (
                   <img
                     src={photo.url}
                     alt={photo.id}

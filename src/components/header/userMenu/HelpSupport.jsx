@@ -16,7 +16,7 @@ export default function HelpSupport({ setVisible }) {
         Settings & privacy
       </div>
       {user_menu2.map(({ name, icon }) => (
-        <div className={`${styles.mmenu_item} hover3`}>
+        <div className={`${styles.mmenu_item} hover1`}>
           <div className={styles.small_circle}>
             <i className={icon}></i>
           </div>

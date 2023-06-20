@@ -124,7 +124,9 @@ function ProfilePhoto({
       }, 200);
     }
   }, [data, isSuccess]);
-
+  const filterImages = (resources) => {
+    return resources.filter((resource) => resource.url.includes(".webp")); // Change the extension as per your requirement
+  };
   return (
     <Portal>
       <div className={`${classes.wrap} blur`}>
@@ -156,35 +158,35 @@ function ProfilePhoto({
                   Upload photo
                 </button>
                 {photosData?.profilePhotos.length > 0 && (
-                  <>
-                    <div>Choose from old profile picture</div>
-                    <div className={classes.old_photos}>
-                      {photosData?.profilePhotos.map((photo) => (
-                        <img
-                          src={photo.url}
-                          alt={photo.id}
-                          onClick={() => setImage(photo.url)}
-                          key={photo.id}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
-                {photosData?.resources.length > 0 && (
-                  <>
-                    <div>Choose from your profile photos</div>
-                    <div className={classes.old_photos}>
-                      {photosData?.resources.map((photo) => (
-                        <img
-                          src={photo.url}
-                          alt={photo.id}
-                          onClick={() => setImage(photo.url)}
-                          key={photo.id}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
+  <>
+    <div>Choose from old profile picture</div>
+    <div className={classes.old_photos}>
+      {filterImages(photosData?.profilePhotos).map((photo) => (
+        <img
+          src={photo.url}
+          alt={photo.id}
+          onClick={() => setImage(photo.url)}
+          key={photo.id}
+        />
+      ))}
+    </div>
+  </>
+)}
+{photosData?.resources.length > 0 && (
+  <>
+    <div>Choose from your profile photos</div>
+    <div className={classes.old_photos}>
+      {filterImages(photosData?.resources).map((photo) => (
+        <img
+          src={photo.url}
+          alt={photo.id}
+          onClick={() => setImage(photo.url)}
+          key={photo.id}
+        />
+      ))}
+    </div>
+  </>
+)}
               </>
             ) : (
               <FormLoader loading={isLoading}>

@@ -42,7 +42,8 @@ a {
   --dark-color-primary: #242526;
   --dark-color-secondary: #b0b3b8;
   --red-color: #ff443b;
-  --blue-color: #0096ff;
+  --blue-color: hsl(214, 89%, 52%);
+  /* --blue-color: #0096ff; */
   --light-blue-color: #0096ff21;
   --blue: #1876f2;
   --green-color: #42b72a;

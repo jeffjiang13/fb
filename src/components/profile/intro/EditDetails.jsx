@@ -38,7 +38,7 @@ function EditDetails({
               <div className={classes.details_header}>Other Name</div>
               <Detail
                 value={details?.otherName}
-                img="studies"
+                img="person"
                 placeholder="Add other name"
                 name="otherName"
                 text="Other Name"

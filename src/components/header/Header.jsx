@@ -92,7 +92,7 @@ function Header() {
           className={({ isActive }) =>
             isActive
               ? `${styles.active} ${styles.middle_icon}`
-              : styles.middle_icon
+              : `${styles.middle_icon} hover2`
           }
         >
           <HomeActive className={styles.active_icon} />
@@ -104,7 +104,7 @@ function Header() {
           className={({ isActive }) =>
             isActive
               ? `${styles.active} ${styles.middle_icon}`
-              : styles.middle_icon
+              : `${styles.middle_icon} hover2`
           }
         >
           <span
@@ -128,7 +128,7 @@ function Header() {
             </div>
           )}
         </NavLink>
-        <Link to="/" className={`${styles.middle_icon} hover1`}>
+        <Link to="/" className={`${styles.middle_icon} hover2`}>
           <Watch style={{ transform: "translateY(5px)" }} color={color} />
           <div
             style={{ transform: "translateY(3px)" }}
@@ -137,30 +137,18 @@ function Header() {
             9+
           </div>
         </Link>
-        <Link to="/" className={`${styles.middle_icon} hover1`}>
+        <Link to="/" className={`${styles.middle_icon} hover2`}>
           <Market color={color} />
         </Link>
-        <Link to="/" className={`${styles.middle_icon} hover1`}>
+        <Link to="/" className={`${styles.middle_icon} hover2`}>
           <Gaming color={color} />
         </Link>
       </div>
       <div className={styles.right}>
-        <NavLink
-          to="/profile"
-          className={({ isActive }) =>
-            isActive &&
-            (location.pathname === "/profile" ||
-              location.pathname === `/profile/${user?.username}`)
-              ? `${styles.profile_active} ${styles.profile}`
-              : `${styles.profile} hover1`
-          }
-        >
-          <img src={user?.photo} alt={user?.username} className="shadow" />
-          <span>{user?.first_name}</span>
-        </NavLink>
+
         <div ref={allmenu}>
           <div
-            className={`${styles.circle_icon}  ${
+            className={`${styles.circle_icon} ${
               showAllMenu && styles.active_header
             }`}
             onClick={() => {
@@ -246,6 +234,19 @@ function Header() {
             <UserMenu setShowUserMenu={setShowUserMenu} user={user} />
           )}
         </div>
+        <NavLink
+          to="/profile"
+          className={({ isActive }) =>
+            isActive &&
+            (location.pathname === "/profile" ||
+              location.pathname === `/profile/${user?.username}`)
+              ? `${styles.profile_active} ${styles.profile}`
+              : `${styles.profile} hover2`
+          }
+        >
+          <img src={user?.photo} alt={user?.username} className="shadow" />
+          <span>{user?.first_name}</span>
+        </NavLink>
       </div>
     </header>
   );

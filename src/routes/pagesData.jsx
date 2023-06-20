@@ -8,6 +8,8 @@ const FriendsPage = React.lazy(() => import("../pages/friends"));
 const PostPage = React.lazy(() => import("../pages/post/PostPage"));
 const Messages = React.lazy(() => import("../pages/messages"));
 const AllPhotos = React.lazy(() => import("../pages/profile/AllPhotos"));
+const FriendsList = React.lazy(() => import("../pages/profile/FriendsList"));
+const About = React.lazy(() => import("../pages/profile/About"));
 const pagesData = [
   {
     path: "",
@@ -79,6 +81,24 @@ const pagesData = [
     path: "allPhotos",
     element: <AllPhotos />,
     title: "photos",
+    priv: true,
+  },
+  {
+    path: "allPhotos/:username",
+    element: <AllPhotos />,
+    title: "photos",
+    priv: true,
+  },
+  {
+    path: "about/:username",
+    element: <About />,
+    title: "about",
+    priv: true,
+  },
+  {
+    path: "friendslist/:username",
+    element: <FriendsList />,
+    title: "friendslist",
     priv: true,
   },
 ];

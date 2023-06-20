@@ -17,24 +17,26 @@ export default function HomeLeft({ user }) {
           {user?.first_name} {user.last_name}
         </span>
       </Link>
-      {left.slice(0, 8).map((link, i) =>
-        link.link ? (
-          <LeftLink
-            key={i}
-            img={link.img}
-            text={link.text}
-            notification={link.notification}
-            link={link.link}
-          />
-        ) : (
-          <LeftLink
-            key={i}
-            img={link.img}
-            text={link.text}
-            notification={link.notification}
-          />
-        )
-      )}
+      {left
+        .slice(0, 8)
+        .map((link, i) =>
+          link.link ? (
+            <LeftLink
+              key={i}
+              img={link.img}
+              text={link.text}
+              notification={link.notification}
+              link={link.link}
+            />
+          ) : (
+            <LeftLink
+              key={i}
+              img={link.img}
+              text={link.text}
+              notification={link.notification}
+            />
+          )
+        )}
       {!visible && (
         <div
           className={`${styles.left_link} hover2`}
@@ -79,17 +81,27 @@ export default function HomeLeft({ user }) {
         <div className={styles.edit_shortcut}>Edit</div>
       </div>
       <div className={styles.shortcut_list}>
-        <Shortcut
-          link="https://github.com/jeffjiang13"
-          img="../../images/github.png"
-          name="Github"
-        />
-
-        <Shortcut
-          link="https://www.linkedin.com/in/jeffjiang13/"
-          img="../../images/linkedin.png"
-          name="Linkedin "
-        />
+        <div className="hover2">
+          <Shortcut
+            link="https://github.com/jeffjiang13"
+            img="../../images/github.png"
+            name="Github"
+          />
+        </div>
+        <div className="hover2">
+          <Shortcut
+            link="https://www.linkedin.com/in/jeffjiang13/"
+            img="../../images/linkedin.png"
+            name="Linkedin"
+          />
+        </div>
+        <div className="hover2">
+          <Shortcut
+            link="https://www.jeff-jiang.com"
+            img="../../images/icon.png"
+            name="Portfolio"
+          />
+        </div>
       </div>
       <div
         className={`${styles.fb_copyright} ${

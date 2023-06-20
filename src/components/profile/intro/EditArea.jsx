@@ -37,7 +37,7 @@ function EditArea({
           </option>
 
           <option value="Single">Single</option>
-          <option value="In a realationship">In a relationship</option>
+          <option value="In a relationship">In a relationship</option>
           <option value="Married">Married</option>
           <option value="Divorced">Divorced</option>
           <option value="">Remove relationship</option>
