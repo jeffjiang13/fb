@@ -1,6 +1,6 @@
 <div align="center" id="top" className="mb-10">
+<img src="./public/icons/fb.png" alt="FB_2023" width="100" height="100" />
 <img src="./public/icons/facebook1.svg" alt="FB_2023" width="150" height="150" />
-<img src="./public/icons/fb.png" alt="FB_2023" width="150" height="150" />
 
 &#xa0;
 
