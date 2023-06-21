@@ -16,7 +16,6 @@ function AboutComponent({
   setShowEdit,
   profileSkelton,
 }) {
-  console.log("userData", userData);
   const dData = userData?.details;
   const [details, setDetails] = useState(dData);
   const [infos, setInfos] = useState(dData);

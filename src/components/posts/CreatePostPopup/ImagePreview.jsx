@@ -27,13 +27,9 @@ function ImagePreview({ images, video }) {
       reader.readAsDataURL(file);
       reader.onload = (readerEvent) => {
         if (file.type.startsWith("image")) {
-          console.log("readerEvent.target.result", readerEvent.target.result);
           dispatch(addimages(readerEvent.target.result));
-          console.log("createPostSlice.image", images);
         } else if (file.type.startsWith("video")) {
-          console.log("readerEvent.target.result", readerEvent.target.result);
           dispatch(addvideo(readerEvent.target.result));
-          console.log("createPostSlice.video", video);
         }
       };
     });
@@ -96,7 +92,6 @@ function ImagePreview({ images, video }) {
                 if (images.includes(mediaItem)) {
                   return <img src={mediaItem} alt={i} key={i} />;
                 } else if (video.includes(mediaItem)) {
-                  console.log("Rendering video: ", mediaItem);
                   return (
                     <div key={i}>
                       <video

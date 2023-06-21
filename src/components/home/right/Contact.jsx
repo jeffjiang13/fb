@@ -28,7 +28,6 @@ export default function Contact() {
   if (isError) {
     return <div>Error occurred while fetching users</div>;
   }
-  console.log(data);
   return (
     <div>
       {data.data.users

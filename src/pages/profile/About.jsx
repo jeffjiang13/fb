@@ -158,7 +158,6 @@ function About(color) {
       navigate("/404");
     }
   }, [profileError, photosError, postsError]);
-  console.log(profileData);
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const filterImages = (resources) => {

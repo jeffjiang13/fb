@@ -3,7 +3,6 @@ import axios from "axios";
 import { queryClient } from "./../App";
 
 const CreatePost = async ({ data, type }) => {
-  console.log('data, type', data, type);
   const endpoint = type === "image" ? "/createPost/images" : "/createPostVideo";
 
   const reqdata = await axios.post(

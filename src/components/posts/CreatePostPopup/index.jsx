@@ -69,7 +69,6 @@ const postSubmit = () => {
   }
 
   if (postImage) {
-    console.log("1")
     const postImages = createPost.images.map((img) => {
       return dataURItoBlob(img);
     });
@@ -79,14 +78,12 @@ const postSubmit = () => {
   }
 
   if (postVideo) {
-    console.log("2")
 
     const postVid = createPost.video.map((vid) => {
       return dataURItoBlob(vid);
     });
     postVid.forEach((video, index) => {
       if (video instanceof Blob || video instanceof File) {
-        console.log("videoFile", video);
         form.append("video", video, `video${index}.mp4`);
       } else {
         console.log("Video file is not a Blob or File: ", video);
