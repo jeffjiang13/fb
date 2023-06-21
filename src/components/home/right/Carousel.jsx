@@ -17,7 +17,7 @@ function Carousel({ items }) {
   return (
     <div>
       <a href={items[index].url} target="_blank" rel="noopener noreferrer">
-        <img
+        <img secure
           className={styles.carouselImage}
           src={items[index].image}
           alt={items[index].text}

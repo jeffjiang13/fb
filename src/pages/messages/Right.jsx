@@ -53,7 +53,7 @@ function Right({
           )}
           <div className={styles.right_header}>
             <div className={styles.pfp}>
-              <img src={chat?.photo} alt="" />
+              <img secure src={chat?.photo} alt="" />
               {soketSlice.onlineUsers.find(
                 (u) => u.id === chat?.users[0]?._id
               ) &&
@@ -102,7 +102,7 @@ function Right({
                       }}
                     >
                       <div className="small_circle">
-                        <img
+                        <img secure
                           src="../../../icons/plus.png"
                           alt=""
                           className="invert1"
@@ -117,7 +117,7 @@ function Right({
                   {chat?.users.map((member) => (
                     <div key={member._id} className={styles.group_member}>
                       <Link to={`/profile/${member.username}`}>
-                        <img src={member.photo} alt="" />
+                        <img secure src={member.photo} alt="" />
                       </Link>
 
                       <div
@@ -158,7 +158,7 @@ function Right({
                         }}
                       >
                         <div className="small_circle">
-                          <img
+                          <img secure
                             src="../../../icons/plus.png"
                             alt=""
                             className="invert1"

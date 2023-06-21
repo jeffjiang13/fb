@@ -127,7 +127,7 @@ function Intro({ userData, isVisitor, showEdit, setShowEdit, profileSkelton }) {
           )}
           {(details?.job || details?.workplace) && (
             <div className={classes.info_profile}>
-              <img src="../../../icons/job.png" alt="" />
+              <img secure src="../../../icons/job.png" alt="" />
               <span>
                 works{details?.job && <span> as {details?.job}</span>}
                 {details?.workplace && (
@@ -141,37 +141,37 @@ function Intro({ userData, isVisitor, showEdit, setShowEdit, profileSkelton }) {
           )}
           {details?.relationship && (
             <div className={classes.info_profile}>
-              <img src="../../../icons/relationship.png" alt="" />
+              <img secure src="../../../icons/relationship.png" alt="" />
               {details?.relationship}
             </div>
           )}
           {details?.college && (
             <div className={classes.info_profile}>
-              <img src="../../../icons/studies.png" alt="" />
+              <img secure src="../../../icons/studies.png" alt="" />
               studied at {details?.college}
             </div>
           )}
           {details?.highSchool && (
             <div className={classes.info_profile}>
-              <img src="../../../icons/studies.png" alt="" />
+              <img secure src="../../../icons/studies.png" alt="" />
               studied at {details?.highSchool}
             </div>
           )}
           {details?.currentCity && (
             <div className={classes.info_profile}>
-              <img src="../../../icons/home.png" alt="" />
+              <img secure src="../../../icons/home.png" alt="" />
               Lives in {details?.currentCity}
             </div>
           )}
           {details?.homeTown && (
             <div className={classes.info_profile}>
-              <img src="../../../icons/from.png" alt="" />
+              <img secure src="../../../icons/from.png" alt="" />
               From {details?.homeTown}
             </div>
           )}
           {details?.instagram && (
             <div className={classes.info_profile}>
-              <img src="../../../icons/instagram.png" alt="" />
+              <img secure src="../../../icons/instagram.png" alt="" />
               <a
                 href={`https://www.instagram.com/${details?.instagram}`}
                 target="_blank"
@@ -183,7 +183,7 @@ function Intro({ userData, isVisitor, showEdit, setShowEdit, profileSkelton }) {
           )}
           {userData?.createdAt && (
             <div className={classes.info_profile}>
-              <img width={20} src="../../../icons/join.png" alt="joindAT" />
+              <img secure width={20} src="../../../icons/join.png" alt="joindAT" />
               Joined{" "}
               {new Date(userData?.createdAt).toLocaleString("default", {
                 month: "long",

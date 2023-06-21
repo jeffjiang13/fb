@@ -54,7 +54,7 @@ function Header() {
       <div className={styles.left}>
         <Link to="/" className={styles.logo}>
           <div className={styles.circle}>
-            <img src="/2021_Facebook_icon.svg" width={200} />
+            <img secure src="/2021_Facebook_icon.svg" width={200} />
           </div>
         </Link>
         <div
@@ -244,7 +244,7 @@ function Header() {
               : `${styles.profile} hover2`
           }
         >
-          <img src={user?.photo} alt={user?.username} className="shadow" />
+          <img secure src={user?.photo} alt={user?.username} className="shadow" />
           <span>{user?.first_name}</span>
         </NavLink>
       </div>

@@ -183,7 +183,7 @@ function Profile() {
                       containerClassName="avatar-skeleton"
                     />
                   ) : (
-                    <img
+                    <img secure
                       src={userData?.photo}
                       alt={userData?.first_name}
                       ref={pRef}
@@ -247,7 +247,7 @@ function Profile() {
                 ) : (
                   <div className={classes.btns}>
                     <button className="btn_blue">
-                      <img
+                      <img secure
                         src="../../../icons/plus.png"
                         alt=""
                         className="invert"

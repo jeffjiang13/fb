@@ -120,7 +120,7 @@ function CreateComment({
     <FormLoader loading={isLoading} type={2}>
       <div className={classes.wrap}>
         <div className={classes.left}>
-          <img src={user.photo} alt="" />
+          <img secure src={user.photo} alt="" />
         </div>
         <div className={classes.right}>
           <div id="CreateComment" className={classes.input}>
@@ -187,7 +187,7 @@ function CreateComment({
       </div>
       {commentImage && (
         <div className={classes.img_perview}>
-          <img src={commentImage} alt="" />
+          <img secure src={commentImage} alt="" />
           <div className={classes.exit} onClick={() => setCommentImage("")}>
             <i className="exit_icon"></i>
           </div>

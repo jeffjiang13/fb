@@ -7,7 +7,7 @@ function SeenStatus({ chat, user }) {
     <>
       {chat?.latestMessage?.sender._id === user._id ? (
         chat?.latestMessage?.seen === "seen" ? (
-          <img src={chat?.photo} alt="" className={styles.seen_status_s} />
+          <img secure src={chat?.photo} alt="" className={styles.seen_status_s} />
         ) : (
           <span className={styles.seen_status_s}>
             <UnSeen />

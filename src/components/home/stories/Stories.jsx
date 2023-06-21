@@ -36,7 +36,7 @@ function Stories() {
       <div style={{ position: 'relative' }}>
         <ScrollContainer ref={scrollContainerRef} className={styles.stories}>
           <div className={styles.create_story_card}>
-            <img
+            <img secure
               src={user?.photo ? user.photo : "../../../images/default_pic.png"}
               alt=""
               className={styles.create_story_img}

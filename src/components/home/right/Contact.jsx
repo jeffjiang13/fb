@@ -36,7 +36,7 @@ export default function Contact() {
           <Link to={`/messages/${user._id}`} key={user._id}>
             <div className={`${styles.contact} hover3`}>
               <div className={styles.contact_img}>
-                <img src={user.photo} alt="" />
+                <img secure src={user.photo} alt="" />
               </div>
               <span>
                 {user.first_name} {user.last_name}

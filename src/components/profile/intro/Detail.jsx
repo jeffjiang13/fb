@@ -36,7 +36,7 @@ function Detail({
         >
           {value ? (
             <div className={classes.info_profile}>
-              <img
+              <img secure
                 src={imgSrc}
                 alt=""
                 className={classes.imageSmall}
@@ -55,7 +55,7 @@ function Detail({
         <div className={classes.add_details_flex}>
           {value ? (
             <div className={classes.info_profile}>
-              <img
+              <img secure
                 src={imgSrc}
                 alt=""
                 className={classes.imageSmall}

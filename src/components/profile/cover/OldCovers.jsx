@@ -30,7 +30,7 @@ function OldCovers({ setShowOldCover, setImage, photosData, showOldCover }) {
               <div>Choose from old cover picture</div>
               <div className={classes.old_photos}>
                 {filterImages(photosData?.profileCovers).map((photo) => (
-                  <img
+                  <img secure
                     src={photo.url}
                     alt={photo.id}
                     onClick={() => {
@@ -48,7 +48,7 @@ function OldCovers({ setShowOldCover, setImage, photosData, showOldCover }) {
               <div>Choose from your profile photos</div>
               <div className={classes.old_photos}>
                 {filterImages(photosData?.resources).map((photo) => (
-                  <img
+                  <img secure
                     src={photo.url}
                     alt={photo.id}
                     onClick={() => {

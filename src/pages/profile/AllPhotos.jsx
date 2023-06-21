@@ -175,7 +175,7 @@ function AllPhotos({ data }) {
                       containerClassName="avatar-skeleton"
                     />
                   ) : (
-                    <img
+                    <img secure
                       src={userData?.photo}
                       alt={userData?.first_name}
                       ref={pRef}
@@ -239,7 +239,7 @@ function AllPhotos({ data }) {
                 ) : (
                   <div className={classes.btns}>
                     <button className="btn_blue">
-                      <img
+                      <img secure
                         src="../../../icons/plus.png"
                         alt=""
                         className="invert"
@@ -394,7 +394,7 @@ function AllPhotos({ data }) {
           </div>
           <div className={classe.photo_grid}>
             {images.map((src, index) => (
-              <img
+              <img secure
                 src={src}
                 className={classe.photo}
                 onClick={() => openImageViewer(index)}

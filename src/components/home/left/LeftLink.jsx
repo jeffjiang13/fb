@@ -17,7 +17,7 @@ export default function LeftLink({ img, text, notification, link }) {
 
   return (
     <Link to={link} className={`${styles.left_link} hover2`}>
-      <img src={`../../../left/${img}.png`} alt="" />
+      <img secure src={`../../../left/${img}.png`} alt="" />
       {renderContent()}
     </Link>
   );

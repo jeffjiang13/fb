@@ -113,13 +113,13 @@ const postSubmit = () => {
               </div>
             </div>
             <div className={classes.profile}>
-              <img src={user.photo} alt={user.name} className={classes.photo} />
+              <img secure src={user.photo} alt={user.name} className={classes.photo} />
               <div className={classes.profile_1}>
                 <span className={classes.user_name}>
                   {`${user.first_name} ${user.last_name}`}{" "}
                 </span>
                 <div className={classes.privacy}>
-                  <img src="../../../icons/public.png" alt="" />
+                  <img secure src="../../../icons/public.png" alt="" />
                   <span>Public</span>
                   <i className="arrowDown_icon"></i>
                 </div>

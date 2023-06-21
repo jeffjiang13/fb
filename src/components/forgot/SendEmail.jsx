@@ -58,7 +58,7 @@ function SendEmail({ setVisible, userInfos }) {
             </label>
           </div>
           <div className={styles.s_right}>
-            <img src={userInfos.photo} alt="" />
+            <img secure src={userInfos.photo} alt="" />
             <span>{userInfos.email}</span>
             <span>{userInfos.first_name}</span>
           </div>

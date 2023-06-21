@@ -83,7 +83,7 @@ function Friendship({ friendship: friendshipData, userID, usernameID }) {
             className="gray_btn"
             onClick={() => setFriendsMenu((perv) => !perv)}
           >
-            <img src="../../../icons/friends.png" alt="" />
+            <img secure src="../../../icons/friends.png" alt="" />
             <span>Friends</span>
           </button>
           {friendsMenu && (
@@ -93,7 +93,7 @@ function Friendship({ friendship: friendshipData, userID, usernameID }) {
                   className={`${classes.item} hover1`}
                   onClick={() => unfollowHandler()}
                 >
-                  <img src="../../../icons/unfollowOutlined.png" alt="" />
+                  <img secure src="../../../icons/unfollowOutlined.png" alt="" />
                   Unfollow
                 </div>
               ) : (
@@ -101,7 +101,7 @@ function Friendship({ friendship: friendshipData, userID, usernameID }) {
                   className={`${classes.item} hover1`}
                   onClick={() => followHandler()}
                 >
-                  <img src="../../../icons/unfollowOutlined.png" alt="" />
+                  <img secure src="../../../icons/unfollowOutlined.png" alt="" />
                   Follow
                 </div>
               )}
@@ -119,14 +119,14 @@ function Friendship({ friendship: friendshipData, userID, usernameID }) {
         !friendship?.requestSent &&
         !friendship?.requestReceived && (
           <button className="btn_blue" onClick={() => addFriendHandler()}>
-            <img src="../../../icons/addFriend.png" alt="" className="invert" />
+            <img secure src="../../../icons/addFriend.png" alt="" className="invert" />
             <span>Add Friend</span>
           </button>
         )
       )}
       {friendship?.requestSent ? (
         <button className="btn_blue" onClick={() => cancelRequestHandler()}>
-          <img
+          <img secure
             src="../../../icons/cancelRequest.png"
             className="invert"
             alt=""
@@ -140,7 +140,7 @@ function Friendship({ friendship: friendshipData, userID, usernameID }) {
               className="gray_btn"
               onClick={() => setRespondMenu((perv) => !perv)}
             >
-              <img src="../../../icons/friends.png" alt="" />
+              <img secure src="../../../icons/friends.png" alt="" />
               <span>Respond</span>
             </button>
             {respondMenu && friendship?.requestReceived && (
@@ -164,12 +164,12 @@ function Friendship({ friendship: friendshipData, userID, usernameID }) {
       )}
       {friendship?.following ? (
         <button className="gray_btn" onClick={() => unfollowHandler()}>
-          <img src="../../../icons/follow.png" alt="" />
+          <img secure src="../../../icons/follow.png" alt="" />
           <span>Following</span>
         </button>
       ) : (
         <button className="btn_blue" onClick={() => followHandler()}>
-          <img src="../../../icons/follow.png" className="invert" alt="" />
+          <img secure src="../../../icons/follow.png" className="invert" alt="" />
           <span style={{ color: "#fff" }}>Follow</span>
         </button>
       )}
@@ -177,7 +177,7 @@ function Friendship({ friendship: friendshipData, userID, usernameID }) {
         className={friendship?.friends ? "btn_blue" : "gray_btn"}
         onClick={() => getChatHandler()}
       >
-        <img
+        <img secure
           src="../../../icons/message.png"
           className={friendship?.friends && "invert"}
           alt=""

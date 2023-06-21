@@ -53,7 +53,7 @@ export default function ReactsPopup({
           key={i}
           onClick={() => reactHandler(react.name)}
         >
-          <img src={react.image} alt={react.name} />
+          <img secure src={react.image} alt={react.name} />
         </div>
       ))}
     </div>

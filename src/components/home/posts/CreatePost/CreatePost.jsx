@@ -11,7 +11,7 @@ function CreatePost({ user, profile }) {
   return (
     <div className={styles.create_post}>
       <div className={styles.header}>
-        <img src={user?.photo} alt="" />
+        <img secure src={user?.photo} alt="" />
         <div
           className={`${styles.open_post} hover2`}
           onClick={() => {

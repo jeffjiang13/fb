@@ -90,11 +90,12 @@ function ImagePreview({ images, video }) {
             >
               {media.map((mediaItem, i) => {
                 if (images.includes(mediaItem)) {
-                  return <img src={mediaItem} alt={i} key={i} />;
+                  return <img secure src={mediaItem} alt={i} key={i} />;
                 } else if (video.includes(mediaItem)) {
                   return (
                     <div key={i}>
                       <video
+                        secure
                         src={mediaItem}
                         alt={i}
                         key={i}

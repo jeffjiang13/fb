@@ -34,8 +34,8 @@ function Notification({ toast, t, notification }) {
         }}
       >
         <div className={styles.img}>
-          <img src={notification?.sender?.photo} alt="" />
-          <img
+          <img secure src={notification?.sender?.photo} alt="" />
+          <img secure
             className={styles.type}
             src={`../../../reacts/${
               notification.type === "react"

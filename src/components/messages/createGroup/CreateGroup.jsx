@@ -191,7 +191,7 @@ function CreateGroup({ setShowCreateGroup, showCreateGroup, type, chat }) {
                     <div className={styles.members}>
                       {members.map((member) => (
                         <div className={styles.member} key={member._id}>
-                          <img src={member.photo} alt="" />
+                          <img secure src={member.photo} alt="" />
                           {`${member.first_name} ${member.last_name}`}
                           <i
                             style={{
@@ -244,7 +244,7 @@ function CreateGroup({ setShowCreateGroup, showCreateGroup, type, chat }) {
                               >
                                 <div className={`${classes.search_result}`}>
                                   <div>
-                                    <img
+                                    <img secure
                                       className={classes.search_result_img}
                                       src={user.photo}
                                       alt=""

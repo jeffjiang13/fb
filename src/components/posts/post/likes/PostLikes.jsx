@@ -47,7 +47,7 @@ function PostLikes({ showLikes, setShowLikes, postID }) {
               Object.entries(data?.data.stats.types).map(([key, value]) => {
                 return (
                   <div key={key} className={classes.reacts_info_wrap}>
-                    <img src={`../../../reacts/${key}.svg`} alt="" />
+                    <img secure src={`../../../reacts/${key}.svg`} alt="" />
                     <p
                       style={{
                         color: `
@@ -132,12 +132,12 @@ function PostLikes({ showLikes, setShowLikes, postID }) {
                   className={`${classes.react_user} hover3`}
                 >
                   <div className={classes.react_user_wrap}>
-                    <img
+                    <img secure
                       className={classes.react_user_img}
                       src={react.user.photo}
                       alt=""
                     />
-                    <img
+                    <img secure
                       src={`../../../reacts/${react.type}.svg`}
                       alt=""
                       className={classes.react_icon}

@@ -189,7 +189,7 @@ function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
               ""
             ) : (
               <div className={styles.chat_img2}>
-                <img src={currentChat?.photo} alt="" />
+                <img secure src={currentChat?.photo} alt="" />
                 {soketSlice.onlineUsers.find(
                   (u) => u.id === currentChat?.users[0]?._id
                 ) &&
@@ -234,7 +234,7 @@ function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
           {isTyping.status && isTyping.room === chatId ? (
             <div className={`${styles.message} ${styles.message_user}`}>
               <div className={styles.meesage_user}>
-                <img src={currentChat?.photo} alt="" />
+                <img secure src={currentChat?.photo} alt="" />
               </div>
               <Lottie
                 style={{
@@ -268,7 +268,7 @@ function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
                           <div className={styles.meesage_user}>
                             {isLastMsg(message, FilterdMessages, i) ||
                             isSingleMsg(message, FilterdMessages, i) ? (
-                              <img src={message.sender.photo} alt="" />
+                              <img secure src={message.sender.photo} alt="" />
                             ) : (
                               ""
                             )}

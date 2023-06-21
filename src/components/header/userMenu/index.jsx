@@ -50,7 +50,7 @@ export default function UserMenu({ user, setShowUserMenu }) {
             className={`${styles.mmenu_header} hover1`}
             onClick={() => setShowUserMenu(false)}
           >
-            <img src={user?.photo} alt="" />
+            <img secure src={user?.photo} alt="" />
             <div className={styles.mmenu_col}>
               <span>
                 {user?.first_name} {user?.last_name}

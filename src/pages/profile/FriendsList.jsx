@@ -193,7 +193,7 @@ function FriendsList(color) {
                       containerClassName="avatar-skeleton"
                     />
                   ) : (
-                    <img
+                    <img secure
                       src={userData?.photo}
                       alt={userData?.first_name}
                       ref={pRef}
@@ -257,7 +257,7 @@ function FriendsList(color) {
                 ) : (
                   <div className={classes.btns}>
                     <button className="btn_blue">
-                      <img
+                      <img secure
                         src="../../../icons/plus.png"
                         alt=""
                         className="invert"
@@ -423,7 +423,7 @@ function FriendsList(color) {
               filteredFriends.map((friend, index) => (
                 <div key={index} className={styles.friend}>
                   <Link to={`/profile/${friend?.username}`}>
-                    <img src={friend.photo} alt={friend.name} />
+                    <img secure src={friend.photo} alt={friend.name} />
                   </Link>
                   <h4 className={styles.name}>
                     <Link className={styles.link} to={`/profile/${friend?.username}`}>

@@ -63,8 +63,8 @@ function NotificationMenu({ setShowNotificationMenu }) {
                     }}
                   >
                     <div className={styles.img}>
-                      <img src={notification?.sender?.photo} alt="" />
-                      <img
+                      <img secure src={notification?.sender?.photo} alt="" />
+                      <img secure
                         className={styles.type}
                         src={`../../../reacts/${
                           notification.type === "react"

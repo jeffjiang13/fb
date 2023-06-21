@@ -162,7 +162,7 @@ function ProfilePhoto({
     <div>Choose from old profile picture</div>
     <div className={classes.old_photos}>
       {filterImages(photosData?.profilePhotos).map((photo) => (
-        <img
+        <img secure
           src={photo.url}
           alt={photo.id}
           onClick={() => setImage(photo.url)}
@@ -177,7 +177,7 @@ function ProfilePhoto({
     <div>Choose from your profile photos</div>
     <div className={classes.old_photos}>
       {filterImages(photosData?.resources).map((photo) => (
-        <img
+        <img secure
           src={photo.url}
           alt={photo.id}
           onClick={() => setImage(photo.url)}

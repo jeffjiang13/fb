@@ -1,10 +1,10 @@
 <div align="center" id="top" className="mb-10">
-<img src="./public/icons/fb.png" alt="FB_2023" width="100" height="100" />
-<img src="./public/icons/facebook1.svg" alt="FB_2023" width="250" height="auto" />
+<img secure src="./public/icons/fb.png" alt="FB_2023" width="100" height="100" />
+<img secure src="./public/icons/facebook1.svg" alt="FB_2023" width="250" height="auto" />
 
 &#xa0;
 
-  <img src="./public/Screenshot.png" alt="FB_2023" />
+  <img secure src="./public/Screenshot.png" alt="FB_2023" />
 
 <a href="https://jj-fb.vercel.app">Demo</a>
 

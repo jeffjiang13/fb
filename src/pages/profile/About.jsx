@@ -214,7 +214,7 @@ function About(color) {
                       containerClassName="avatar-skeleton"
                     />
                   ) : (
-                    <img
+                    <img secure
                       src={userData?.photo}
                       alt={userData?.first_name}
                       ref={pRef}
@@ -278,7 +278,7 @@ function About(color) {
                 ) : (
                   <div className={classes.btns}>
                     <button className="btn_blue">
-                      <img
+                      <img secure
                         src="../../../icons/plus.png"
                         alt=""
                         className="invert"
@@ -459,7 +459,7 @@ function About(color) {
               filteredFriends.slice(0, 4).map((friend, index) => (
                 <div key={index} className={styles.friend}>
                   <Link to={`/profile/${friend?.username}`}>
-                    <img src={friend?.photo} alt={friend?.name} />
+                    <img secure src={friend?.photo} alt={friend?.name} />
                   </Link>
                   <h4 className={styles.name}>
                     <Link className={styles.link} to={`/profile/${friend?.username}`}>
@@ -578,7 +578,7 @@ function About(color) {
           </div>
           <div className={classe.photo_grid}>
             {images.slice(0, 10).map((src, index) => (
-              <img
+              <img secure
                 src={src}
                 className={classe.photo}
                 onClick={() => openImageViewer(index)}

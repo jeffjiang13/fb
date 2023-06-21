@@ -250,7 +250,7 @@ function Left({ soketSlice, user, chatId }) {
                   }}
                 >
                   <div className={styles.img_con}>
-                    <img src={user.photo} alt="" />
+                    <img secure src={user.photo} alt="" />
                     <span className={styles.green_dot} />
                   </div>
                   {user.first_name}
@@ -271,7 +271,7 @@ function Left({ soketSlice, user, chatId }) {
                 } `}
               >
                 <div className={styles.chat_img}>
-                  <img src={chat.photo} alt="" />
+                  <img secure src={chat.photo} alt="" />
                   {soketSlice.onlineUsers.find(
                     (u) => u.id === chat.users[0]?._id
                   ) &&

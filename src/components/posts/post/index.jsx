@@ -164,7 +164,7 @@ function Post({ post }) {
       <div className={classes.header}>
         <div className={classes.left}>
           <Link to={`/profile/${post?.user?.username}`}>
-            <img src={post.user?.photo} alt="" />
+            <img secure src={post.user?.photo} alt="" />
           </Link>
         </div>
         <div className={classes.middle}>
@@ -257,7 +257,7 @@ function Post({ post }) {
               {post.text}
             </div>
             <div className={`${classes.video_wrap} `}>
-              <video controls src={post.video} />
+              <video secure controls src={post.video} />
             </div>
           </>
         )}
@@ -286,7 +286,7 @@ function Post({ post }) {
                 }`}
               >
                 {post.images.map((img, i) => (
-                  <img
+                  <img secure
                     onClick={() => openImageViewer(i)}
                     src={img}
                     alt={i}
@@ -312,7 +312,7 @@ function Post({ post }) {
                 className={classes.cover}
                 style={{ backgroundImage: `url(${post.user.cover})` }}
               ></div>
-              <img
+              <img secure
                 onClick={() => openImageViewer(0)}
                 src={post?.images[0]}
                 alt={post.text}
@@ -323,7 +323,7 @@ function Post({ post }) {
         {post.type === "cover" && (
           <>
             <div className={`${classes.images_wrap} `}>
-              <img
+              <img secure
                 onClick={() => openImageViewer(0)}
                 src={post?.images[0]}
                 alt={post.text}
@@ -356,7 +356,7 @@ function Post({ post }) {
           >
             <div className={classes.reacts_view}>
               {reactView.map((react, i) => (
-                <img src={`../../../reacts/${react}.svg`} alt="" key={i} />
+                <img secure src={`../../../reacts/${react}.svg`} alt="" key={i} />
               ))}
             </div>
             <span>{reactions?.totalCount > 0 && reactions?.totalCount}</span>
@@ -398,7 +398,7 @@ function Post({ post }) {
             // onTouchEnd={handleMouseLeave}
           >
             {check ? (
-              <img
+              <img secure
                 src={`../../../reacts/${check}.svg`}
                 alt=""
                 className="small_react"

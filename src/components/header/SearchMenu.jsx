@@ -141,7 +141,7 @@ function SearchMenu({ color, showSearchMenu, setShowSearchMenu }) {
                 >
                   <div className={`${classes.search_result}`}>
                     <div>
-                      <img
+                      <img secure
                         className={classes.search_result_img}
                         src={user.user.photo}
                         alt=""
@@ -180,7 +180,7 @@ function SearchMenu({ color, showSearchMenu, setShowSearchMenu }) {
               >
                 <div className={`${classes.search_result}`}>
                   <div>
-                    <img
+                    <img secure
                       className={classes.search_result_img}
                       src={user.photo}
                       alt=""

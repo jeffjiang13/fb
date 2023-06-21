@@ -12,7 +12,7 @@ export default function HomeLeft({ user }) {
   return (
     <div className={`${styles.left_home} scrollbar`}>
       <Link to="/profile" className={`${styles.left_link} hover2`}>
-        <img src={user?.photo} alt="" />
+        <img secure src={user?.photo} alt="" />
         <span>
           {user?.first_name} {user.last_name}
         </span>

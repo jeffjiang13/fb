@@ -60,7 +60,7 @@ function EmojiPickerBackground({
         ""
       ) : (
         <div className={classes.background_wrap}>
-          <img
+          <img secure
             src="../../../icons/colorful.png"
             alt="colorful"
             className={classes.open_bg}
@@ -77,7 +77,7 @@ function EmojiPickerBackground({
                 }}
               ></div>
               {postBackgrounds.map((bg, i) => (
-                <img
+                <img secure
                   src={bg}
                   key={i}
                   alt={i}

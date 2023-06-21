@@ -8,7 +8,7 @@ export default function Shortcut({ link, img, name }) {
       rel="noreferrer"
       className={styles.shortcut_item}
     >
-      <img src={img} alt="" />
+      <img secure src={img} alt="" />
       <span>{name}</span>
     </a>
   );

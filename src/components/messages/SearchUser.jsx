@@ -120,7 +120,7 @@ function SearchUser({ color, showSearchMenu, setShowSearchMenu }) {
               >
                 <div className={`${classes.search_result}`}>
                   <div>
-                    <img
+                    <img secure
                       className={classes.search_result_img}
                       src={user.photo}
                       alt=""

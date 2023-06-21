@@ -53,7 +53,7 @@ function Comment({ comment }) {
         className={`${classes.left} ${classes.comment_user_wrap}`}
         ref={repliesRef}
       >
-        <img src={comment.user.photo} alt="" />
+        <img secure src={comment.user.photo} alt="" />
       </div>
       <div className={classes.right}>
         <div className={classes.comment_info}>
@@ -72,12 +72,12 @@ function Comment({ comment }) {
           <div className={classes.text}>{comment.text}</div>
           {comment.photo && (
             <div className={classes.img_info}>
-              <img src={comment.photo} alt={comment.text} />
+              <img secure src={comment.photo} alt={comment.text} />
             </div>
           )}
           {likesCount > 0 && (
             <div className={classes.comment_likes}>
-              <img src={`../../../reacts/like.svg`} alt="" />
+              <img secure src={`../../../reacts/like.svg`} alt="" />
               <p>{likesCount}</p>
             </div>
           )}
@@ -108,7 +108,7 @@ function Comment({ comment }) {
           {replies.slice(0, count).map((comment, i, { length }) => (
             <div className={classes.info_wrap} key={comment._id}>
               <div className={classes.left}>
-                <img src={comment.user.photo} alt="" />
+                <img secure src={comment.user.photo} alt="" />
               </div>
               <div className={classes.right}>
                 <div className={classes.comment_info}>
@@ -127,7 +127,7 @@ function Comment({ comment }) {
                   <div className={classes.text}>{comment.text}</div>
                   {comment.photo && (
                     <div className={classes.img_info}>
-                      <img src={comment.photo} alt={comment.text} />
+                      <img secure src={comment.photo} alt={comment.text} />
                     </div>
                   )}
                 </div>

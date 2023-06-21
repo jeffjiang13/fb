@@ -77,7 +77,7 @@ function SharedPost({ post }) {
               style={{ marginTop: 0 }}
             >
               {post?.images.map((img, i) => (
-                <img
+                <img secure
                   onClick={() => openImageViewer(i)}
                   src={img}
                   alt={i}
@@ -97,7 +97,7 @@ function SharedPost({ post }) {
                 className={classes.cover}
                 style={{ backgroundImage: `url(${post.user.cover})` }}
               ></div>
-              <img
+              <img secure
                 onClick={() => openImageViewer(0)}
                 src={post?.images[0]}
                 alt={post?.text}
@@ -109,7 +109,7 @@ function SharedPost({ post }) {
         {post?.type === "cover" && (
           <>
             <div className={`${classes.images_wrap} `}>
-              <img
+              <img secure
                 onClick={() => openImageViewer(0)}
                 src={post?.images[0]}
                 alt={post?.text}
@@ -120,7 +120,7 @@ function SharedPost({ post }) {
         <div className={classes.header} style={{ paddingBottom: "10px" }}>
           <div className={classes.left}>
             <Link to={`/profile/${post?.user?.username}`}>
-              <img src={post?.user.photo} alt="" style={{ width: "35px" }} />
+              <img secure src={post?.user.photo} alt="" style={{ width: "35px" }} />
             </Link>
           </div>
           <div className={classes.middle}>

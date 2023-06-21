@@ -60,7 +60,7 @@ function LoginForm({ setRenderSignUp }) {
   return (
     <main className={styles.main}>
       <div className={styles.header}>
-        <img src="../../icons/facebook1.svg" alt="" />
+        <img secure src="../../icons/facebook1.svg" alt="" />
         <span>Connect with friends and the world around you on Facebook.</span>
       </div>
       <div className={styles.login}>
