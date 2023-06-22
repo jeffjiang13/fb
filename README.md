@@ -6,7 +6,7 @@
 
   <img secure src="./public/Screenshot.png" alt="FB_2023" />
 
-<a href="https://jj-fb.vercel.app">Demo</a>
+<a href="https://jj-facebok.vercel.app">Demo</a>
 
 </div>
 
