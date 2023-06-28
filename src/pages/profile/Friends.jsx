@@ -37,7 +37,7 @@ function Friends({ userData, userFriends, photosSkelton }) {
           <div className={classes.friends_grid}>
             {userFriends &&
               userFriends
-              .filter(user => !excludedUsers.includes(user._id))
+              .filter(user => user && !excludedUsers.includes(user._id))
               .slice(0, 9)
               .map((user, i) => (
                 <Link to={`/profile/${user?.username}`} key={i}>

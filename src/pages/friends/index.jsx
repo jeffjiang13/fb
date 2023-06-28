@@ -208,7 +208,7 @@ function FriendsPage() {
                 )}
                 {data?.data.friendLists && data?.data.friendLists.length > 0
                   ? data?.data.friendLists
-                  .filter((user) => user._id !== userId && !excludedUsers.includes(user._id))
+                  .filter((user) => user && user._id !== userId && !excludedUsers.includes(user._id))
 
                   .map((user) => (
                       <FriendCard user={user} key={user?._id} type="friends" />

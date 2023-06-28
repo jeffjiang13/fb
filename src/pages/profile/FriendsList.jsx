@@ -156,7 +156,7 @@ function FriendsList(color) {
     }
   }, [profileError, photosError, postsError]);
   const filteredFriends = profileData?.data.friends.filter((friend) =>
-    `${friend.first_name} ${friend.last_name}`
+    `${friend?.first_name} ${friend?.last_name}`
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
@@ -422,7 +422,7 @@ function FriendsList(color) {
           <div className={styles.friends_grid}>
             {filteredFriends?.length > 0 ? (
               filteredFriends
-              .filter(user => !excludedUsers.includes(user._id))
+              .filter(user => user && !excludedUsers.includes(user._id))
               .map((friend, index) => (
                 <div key={index} className={styles.friend}>
                   <Link to={`/profile/${friend?.username}`}>
@@ -430,7 +430,7 @@ function FriendsList(color) {
                   </Link>
                   <h4 className={styles.name}>
                     <Link className={styles.link} to={`/profile/${friend?.username}`}>
-                      {`${friend.first_name} ${friend.last_name}`}{" "}
+                      {`${friend?.first_name} ${friend?.last_name}`}{" "}
                     </Link>{" "}
                     <Dots />
                   </h4>

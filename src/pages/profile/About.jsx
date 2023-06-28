@@ -459,7 +459,7 @@ function About(color) {
           <div className={styles.friends_grid}>
             {filteredFriends?.length > 0 ? (
               filteredFriends
-              .filter(user => !excludedUsers.includes(user._id))
+              .filter(user => user && !excludedUsers.includes(user._id))
               .slice(0, 4)
               .map((friend, index) => (
                 <div key={index} className={styles.friend}>
