@@ -160,6 +160,7 @@ function FriendsList(color) {
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
+  const excludedUsers = ["6476534f9606e76435aa18b4", "64764ecb0fcd85b0440c46a5"];
 
   return (
     <div className={classes.profile}>
@@ -420,7 +421,9 @@ function FriendsList(color) {
           </div>
           <div className={styles.friends_grid}>
             {filteredFriends?.length > 0 ? (
-              filteredFriends.map((friend, index) => (
+              filteredFriends
+              .filter(user => !excludedUsers.includes(user._id))
+              .map((friend, index) => (
                 <div key={index} className={styles.friend}>
                   <Link to={`/profile/${friend?.username}`}>
                     <img secure src={friend.photo} alt={friend.name} />

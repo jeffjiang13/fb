@@ -21,6 +21,8 @@ export default function Contact() {
   const user = useSelector((state) => ({ ...state.user.userinfo }));
   const userId = user?._id;
 
+  const excludedUsers = ["6476534f9606e76435aa18b4", "64764ecb0fcd85b0440c46a5"];
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -31,7 +33,7 @@ export default function Contact() {
   return (
     <div>
       {data.data.users
-        .filter((user) => user._id !== userId)
+        .filter((user) => user._id !== userId && !excludedUsers.includes(user._id))
         .map((user) => (
           <Link to={`/messages/${user._id}`} key={user._id}>
             <div className={`${styles.contact} hover3`}>

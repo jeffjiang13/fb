@@ -11,6 +11,8 @@ function Friends({ userData, userFriends, photosSkelton }) {
   const { username } = useParams();
   const usernameID = username ? username : user.username;
   const isVisitor = !(usernameID === user.username);
+  const excludedUsers = ["6476534f9606e76435aa18b4", "64764ecb0fcd85b0440c46a5"];
+
   return (
     <Card>
       <div className={classes.card_header}>
@@ -34,7 +36,10 @@ function Friends({ userData, userFriends, photosSkelton }) {
         ) : (
           <div className={classes.friends_grid}>
             {userFriends &&
-              userFriends.slice(0, 9).map((user, i) => (
+              userFriends
+              .filter(user => !excludedUsers.includes(user._id))
+              .slice(0, 9)
+              .map((user, i) => (
                 <Link to={`/profile/${user?.username}`} key={i}>
                   <div
                     className={classes.friend_card}

@@ -39,6 +39,7 @@ function FriendsPage() {
   });
 
   const friendsSkelton = isLoading || isFetching;
+  const excludedUsers = ["6476534f9606e76435aa18b4", "64764ecb0fcd85b0440c46a5"];
 
   return (
     <>
@@ -206,7 +207,10 @@ function FriendsPage() {
                   <Skeleton className={classes.req_card} height={200} />
                 )}
                 {data?.data.friendLists && data?.data.friendLists.length > 0
-                  ? data?.data.friendLists.map((user) => (
+                  ? data?.data.friendLists
+                  .filter((user) => user._id !== userId && !excludedUsers.includes(user._id))
+
+                  .map((user) => (
                       <FriendCard user={user} key={user?._id} type="friends" />
                     ))
                   : isSuccess && !isLoading && <p>No friends</p>}
@@ -232,8 +236,8 @@ function FriendsPage() {
                 )}
                 {allUsersData?.data.users && allUsersData?.data.users.length > 0
                   ? allUsersData?.data.users
-                      .filter((user) => user._id !== userId)
-                      .map((user) => (
+                  .filter((user) => user._id !== userId && !excludedUsers.includes(user._id))
+                  .map((user) => (
                         <FriendCard
                           user={user}
                           key={user?._id}
