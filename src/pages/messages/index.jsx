@@ -8,7 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import { useState } from "react";
 import { useEffect } from "react";
 import Lottie from "react-lottie-player";
-import homeDesk from "../../components/UI/Lottie/messages.json";
+import homeDesk from "../../components/UI/Lottie/message.json";
 import { setSelectedChat } from "../../app/slices/soketSlice";
 
 function Messages() {
