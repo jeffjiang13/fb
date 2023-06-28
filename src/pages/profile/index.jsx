@@ -329,7 +329,7 @@ function Profile() {
               postsData?.pages.map((page, i) => (
                 <React.Fragment key={i}>
                   {page.data.length > 0 ? (
-                    page.data.map((post) => <Post key={post._id} post={post} />)
+                    page.data.map((post) => <Post key={post?._id} post={post} />)
                   ) : (
                     <Card className={classes.no_posts}>No posts available</Card>
                   )}
