@@ -5,6 +5,7 @@ import { socket } from "../routes/IsLoggedIn";
 const AddComment = async ({ form, post, type }) => {
   const commentUrl = `${process.env.REACT_APP_BACKEND_URL}/api/v1/posts/AddComment/${post}`;
   const replyUrl = `${process.env.REACT_APP_BACKEND_URL}/api/v1/posts/comments/${post}/reply`;
+  console.log("image",form);
 
   const { data } = await axios.post(
     type === "reply" ? replyUrl : commentUrl,

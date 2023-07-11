@@ -11,6 +11,7 @@ import typingAnimation from "../../components/UI/Lottie/typing.json";
 import { useInView } from "react-intersection-observer";
 import { useSeenMessage } from "../../hooks/useSeenMessage";
 import SeenStatus from "./SeenStatus";
+import Linkify from "react-linkify";
 
 import {
   isFirstMsg,
@@ -25,11 +26,19 @@ import Skeleton from "react-loading-skeleton";
 import { toast } from "react-hot-toast";
 import { chatThemes } from "../../data/chatThemes";
 import radialToLinearGradient from "../../utils/radialToLinearGradient";
+function componentDecorator(decoratedHref, decoratedText, key) {
+  return (
+    <a target="blank" href={decoratedHref} key={key} className="linkify">
+      {decoratedText}
+    </a>
+  );
+}
 
 function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
   const messagesEndRef = useRef();
   const { ref: seenRef, inView: seenView } = useInView();
   const { ref: fetchNextRef, inView: fetchNextView } = useInView();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   let navigate = useNavigate();
 
@@ -251,13 +260,30 @@ function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
           )}
           {!isChatSkelton ? (
             <>
+
               {FilterdMessages?.map((message, i) => {
                 return (
                   <div
                     key={message._id}
                     ref={i === 0 && isSameUser(message, user) ? seenRef : null}
                   >
-                    {message.type === "text" || message.type === "like" ? (
+                    {message.type === "image" ? (
+                      <div
+                        className={`${styles.message} ${
+                          isSameUser(message, user) ? styles.message_user : ""
+                        }`}
+                      >
+                        <img
+                          src={message.image}
+                          alt="message"
+                          style={{
+                            width: "300px",
+                            height: "auto",
+                            margin: "10px",
+                          }}
+                        />
+                      </div>
+                    ) : message.type === "text" || message.type === "like" ? (
                       <div
                         className={`${styles.message} ${
                           isSameUser(message, user) ? styles.message_user : ""
@@ -332,7 +358,9 @@ function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
                                 : ""
                             }`}
                           >
-                            {message.content}
+                            <Linkify componentDecorator={componentDecorator}>
+                              {message.content}
+                            </Linkify>
                           </div>
                         )}
                         {!isSameUser(message, user) && (

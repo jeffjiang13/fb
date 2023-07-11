@@ -124,7 +124,7 @@ function Cover({ isVisitor, user, photosData }) {
     <div
       className={classes.cover}
       ref={coverRef}
-      style={{ backgroundImage: `${!isLoading ? `url(${user.cover})` : ""}` }}
+      style={{ backgroundImage: `${!isLoading ? `url(${user?.cover})` : ""}` }}
     >
       {image && (
         <>

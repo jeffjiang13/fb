@@ -10,18 +10,24 @@ export const useSendMessage = (chat) => {
 
   return useMutation({
     mutationKey: "useSendMessage",
-    mutationFn: async ({ content, chatId, type }) => {
+    mutationFn: async ({ form, content, chatId, type }) => {
+
       updateMessages({
         _id: Math.floor(Math.random() * 100000000000 + 1),
         content,
         chat: chatId,
         type,
         sender: user,
+        form,
       });
-
+      if (form) {
+        form.append('content', content);
+        form.append('type', type);
+      }
       const { data } = await axios.put(
         `${process.env.REACT_APP_BACKEND_URL}/api/v1/messages/${chatId}/send`,
-        { content, type },
+        // { content, type },
+        form,
         {
           withCredentials: true,
         }

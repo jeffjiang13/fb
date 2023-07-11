@@ -1,8 +1,14 @@
 
+.emoji_picker {
+  position: absolute;
+  bottom: 50px; /* adjust as needed */
+  right: ; /* adjust as needed */
+  width: 320px; /* adjust as needed */
+}
 
 .dialogContent {
-  min-width: 550px; /* Set the minimum width as per your requirement */
-  min-height: 400px; /* Set the minimum height as per your requirement */
+  min-width: 550px;
+  min-height: 400px;
 }
 
 .wrap {
