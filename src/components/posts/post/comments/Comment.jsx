@@ -6,7 +6,16 @@ import classes from "./Comments.module.css";
 import { useSelector } from "react-redux";
 import { useCommentLike } from "../../../../hooks/useCommentLike";
 import { IoReturnDownForwardOutline } from "react-icons/io5";
-
+import Linkify from "react-linkify";
+import ImageViewer from "react-simple-image-viewer";
+import Portal from "../../../../utils/Portal";
+function componentDecorator(decoratedHref, decoratedText, key) {
+  return (
+    <a target="blank" href={decoratedHref} key={key} className="linkify">
+      {decoratedText}
+    </a>
+  );
+}
 function Comment({ comment }) {
   const user = useSelector((state) => ({ ...state.user.userinfo }));
   const [showReply, setShowReply] = useState(false);
@@ -46,6 +55,57 @@ function Comment({ comment }) {
       setRepliesHeight(repliesRef.current.clientHeight);
     }, 50);
   }, [replies, count]);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  // Change this line
+  const images = [comment.photo].concat(
+    replies
+      ?.filter((message) => message.type === "image")
+      .map((imageMessage) => imageMessage.image)
+  );
+  // Declare the new state variable
+  const [imageSources, setImageSources] = useState([]);
+
+  // Update the 'openImageViewer' function
+  const openImageViewer = (clickedEntity) => {
+    let images;
+    if (clickedEntity._id === comment._id) {
+      // if the clicked entity is the main comment
+      images = [comment.photo].concat(
+        replies?.filter((message) => message.photo).map((reply) => reply.photo)
+      );
+    } else {
+      // if the clicked entity is a reply
+      images = [comment.photo, clickedEntity.photo].concat(
+        replies
+          ?.filter(
+            (message) => message.photo && message._id !== clickedEntity._id
+          )
+          .map((reply) => reply.photo)
+      );
+    }
+    setImageSources(images);
+    const clickedImageIndex = clickedEntity.photo
+      ? images.findIndex((image) => image === clickedEntity.photo)
+      : 0;
+    setCurrentImage(clickedImageIndex);
+    setIsViewerOpen(true);
+  };
+
+  const closeImageViewer = () => {
+    setCurrentImage(0);
+    setIsViewerOpen(false);
+  };
+  const image = replies
+    ?.filter((message) => message.photo !== undefined)
+    .map((reply) => reply.photo);
+  const openImageViewe = (clickedReply) => {
+    const clickedImageIndex = images.findIndex(
+      (image) => image === clickedReply.photo
+    );
+    setCurrentImage(clickedImageIndex);
+    setIsViewerOpen(true);
+  };
 
   return (
     <div className={`${classes.info_wrap} ${classes.comment}`}>
@@ -69,11 +129,32 @@ function Comment({ comment }) {
               />
             )}
           </Link>
-          <div className={classes.text}>{comment.text}</div>
+          <div className={classes.text}>
+            {" "}
+            <Linkify componentDecorator={componentDecorator}>
+              {comment.text}{" "}
+            </Linkify>
+          </div>
           {comment.photo && (
             <div className={classes.img_info}>
-              <img secure src={comment.photo} alt={comment.text} />
+              <img
+                secure
+                src={comment.photo}
+                onClick={() => openImageViewer(comment)}
+                alt={comment.text}
+              />
             </div>
+          )}
+          {isViewerOpen && (
+            <Portal>
+              <ImageViewer
+                src={imageSources}
+                currentIndex={currentImage}
+                onClose={closeImageViewer}
+                closeOnClickOutside={true}
+                disableScroll={false}
+              />
+            </Portal>
           )}
           {likesCount > 0 && (
             <div className={classes.comment_likes}>
@@ -110,6 +191,17 @@ function Comment({ comment }) {
               <div className={classes.left}>
                 <img secure src={comment.user.photo} alt="" />
               </div>
+              {/* {isViewerOpen && (
+                <Portal>
+                  <ImageViewer
+                    src={images}
+                    currentIndex={currentImage}
+                    onClose={closeImageViewer}
+                    closeOnClickOutside={true}
+                    disableScroll={false}
+                  />
+                </Portal>
+              )} */}
               <div className={classes.right}>
                 <div className={classes.comment_info}>
                   <Link
@@ -124,11 +216,32 @@ function Comment({ comment }) {
                       />
                     )}
                   </Link>
-                  <div className={classes.text}>{comment.text}</div>
+                  <div className={classes.text}>
+                    {" "}
+                    <Linkify componentDecorator={componentDecorator}>
+                      {comment.text}
+                    </Linkify>
+                  </div>
                   {comment.photo && (
                     <div className={classes.img_info}>
-                      <img secure src={comment.photo} alt={comment.text} />
+                      <img
+                        secure
+                        src={comment.photo}
+                        onClick={() => openImageViewer(comment)}
+                        alt={comment.text}
+                      />
                     </div>
+                  )}
+                  {isViewerOpen && (
+                    <Portal>
+                      <ImageViewer
+                        src={imageSources}
+                        currentIndex={currentImage}
+                        onClose={closeImageViewer}
+                        closeOnClickOutside={true}
+                        disableScroll={false}
+                      />
+                    </Portal>
                   )}
                 </div>
                 <div className={classes.comment_info_footer}>

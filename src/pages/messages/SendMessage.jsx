@@ -82,6 +82,7 @@ function SendMessage({
         let blob = await response.blob();
         form.append("image", blob);
         setIsLoading(false); // Set loading state to false when the image has been fully processed
+        window.location.reload();
       }
 
 

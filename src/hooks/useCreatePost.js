@@ -3,8 +3,19 @@ import axios from "axios";
 import { queryClient } from "./../App";
 
 const CreatePost = async ({ data, type }) => {
-  const endpoint = type === "image" ? "/createPost/images" : "/createPostVideo";
-
+  let endpoint;
+  switch(type) {
+    case 'image':
+      endpoint = '/createPost/images';
+      break;
+    case 'video':
+      endpoint = '/createPostVideo';
+      break;
+    default:
+      // Assuming 'text' is the default type
+      endpoint = '/createPost';
+      break;
+  }
   const reqdata = await axios.post(
     `${process.env.REACT_APP_BACKEND_URL}/api/v1/posts${endpoint}`,
     data,

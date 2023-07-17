@@ -12,7 +12,8 @@ import { useInView } from "react-intersection-observer";
 import { useSeenMessage } from "../../hooks/useSeenMessage";
 import SeenStatus from "./SeenStatus";
 import Linkify from "react-linkify";
-
+import Portal from "../../utils/Portal";
+import ImageViewer from "react-simple-image-viewer";
 import {
   isFirstMsg,
   isLastMsg,
@@ -39,6 +40,7 @@ function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
   const { ref: seenRef, inView: seenView } = useInView();
   const { ref: fetchNextRef, inView: fetchNextView } = useInView();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState({});
 
   let navigate = useNavigate();
 
@@ -134,7 +136,22 @@ function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
       fetchNextPage();
     }
   }, [fetchNextView]);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const images = FilterdMessages?.filter(message => message.type === "image").map(imageMessage => imageMessage.image);
 
+// Get the position of clicked image from 'images'
+const openImageViewer = (clickedMessage) => {
+  const clickedImageIndex = images.findIndex(image => image === clickedMessage.image);
+  setCurrentImage(clickedImageIndex);
+  setIsViewerOpen(true);
+};
+
+
+  const closeImageViewer = () => {
+    setCurrentImage(0);
+    setIsViewerOpen(false);
+  };
   const skl = (
     <div style={{ padding: "10px" }}>
       <div className={`${styles.message}`}>
@@ -260,7 +277,6 @@ function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
           )}
           {!isChatSkelton ? (
             <>
-
               {FilterdMessages?.map((message, i) => {
                 return (
                   <div
@@ -276,8 +292,18 @@ function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
                         <img
                           src={message.image}
                           alt="message"
+                          onClick={() => openImageViewer(message)}
+                          onLoad={() =>
+                            setIsImageLoaded((prevState) => ({
+                              ...prevState,
+                              [message._id]: true,
+                            }))
+                          }
                           style={{
-                            width: "300px",
+                            display: isImageLoaded[message._id]
+                              ? "block"
+                              : "none",
+                            maxWidth: "300px",
                             height: "auto",
                             margin: "10px",
                           }}
@@ -299,6 +325,17 @@ function Middle({ chatId, soketSlice, user, pView, setOpenInfo, openInfo }) {
                               ""
                             )}
                           </div>
+                        )}
+                        {isViewerOpen && (
+                          <Portal>
+                            <ImageViewer
+                              src={images}
+                              currentIndex={currentImage}
+                              onClose={closeImageViewer}
+                              closeOnClickOutside={true}
+                              disableScroll={false}
+                            />
+                          </Portal>
                         )}
                         {!isSameUser(message, user) &&
                           (isLastMsg(message, FilterdMessages, i) ||
