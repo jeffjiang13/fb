@@ -24,7 +24,14 @@ import Comments from "./comments/Comments";
 import PostLikes from "./likes/PostLikes";
 import SharedPost from "./shares/SharedPost";
 import ShareMenu from "./shares/ShareMenu";
-
+import Linkify from "react-linkify";
+function componentDecorator(decoratedHref, decoratedText, key) {
+  return (
+    <a target="blank" href={decoratedHref} key={key} className="linkify">
+      {decoratedText}
+    </a>
+  );
+}
 const getSortedReacts = (list) => {
   const reacts = Object.keys(
     Object.keys(list).reduce(function (r, e) {
@@ -243,7 +250,9 @@ function Post({ post }) {
               direction: `${isRTL(post.text) ? "rtl" : "ltr"}`,
             }}
           >
-            {post.text}
+            <Linkify componentDecorator={componentDecorator}>
+              {post.text}
+            </Linkify>
           </div>
         )}
         {post.type === "video" && (
@@ -254,7 +263,9 @@ function Post({ post }) {
                 direction: `${isRTL(post.text) ? "rtl" : "ltr"}`,
               }}
             >
-              {post.text}
+              <Linkify componentDecorator={componentDecorator}>
+                {post.text}
+              </Linkify>
             </div>
             <div className={`${classes.video_wrap} `}>
               <video secure controls src={post.video} />
@@ -269,7 +280,9 @@ function Post({ post }) {
               }}
               className={classes.normal}
             >
-              {post.text}
+              <Linkify componentDecorator={componentDecorator}>
+                {post.text}
+              </Linkify>
             </div>
             {imgNum && (
               <div
@@ -286,7 +299,8 @@ function Post({ post }) {
                 }`}
               >
                 {post.images.map((img, i) => (
-                  <img secure
+                  <img
+                    secure
                     onClick={() => openImageViewer(i)}
                     src={img}
                     alt={i}
@@ -312,7 +326,8 @@ function Post({ post }) {
                 className={classes.cover}
                 style={{ backgroundImage: `url(${post.user.cover})` }}
               ></div>
-              <img secure
+              <img
+                secure
                 onClick={() => openImageViewer(0)}
                 src={post?.images[0]}
                 alt={post.text}
@@ -323,7 +338,8 @@ function Post({ post }) {
         {post.type === "cover" && (
           <>
             <div className={`${classes.images_wrap} `}>
-              <img secure
+              <img
+                secure
                 onClick={() => openImageViewer(0)}
                 src={post?.images[0]}
                 alt={post.text}
@@ -340,7 +356,9 @@ function Post({ post }) {
                 direction: `${isRTL(post.text) ? "rtl" : "ltr"}`,
               }}
             >
-              {post.text}
+              <Linkify componentDecorator={componentDecorator}>
+                {post.text}
+              </Linkify>
             </div>
             <div className={classes.share}>
               <SharedPost post={post?.sharedID} />
@@ -356,7 +374,12 @@ function Post({ post }) {
           >
             <div className={classes.reacts_view}>
               {reactView.map((react, i) => (
-                <img secure src={`../../../reacts/${react}.svg`} alt="" key={i} />
+                <img
+                  secure
+                  src={`../../../reacts/${react}.svg`}
+                  alt=""
+                  key={i}
+                />
               ))}
             </div>
             <span>{reactions?.totalCount > 0 && reactions?.totalCount}</span>
@@ -398,7 +421,8 @@ function Post({ post }) {
             // onTouchEnd={handleMouseLeave}
           >
             {check ? (
-              <img secure
+              <img
+                secure
                 src={`../../../reacts/${check}.svg`}
                 alt=""
                 className="small_react"

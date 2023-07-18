@@ -12,17 +12,14 @@ const CreatePost = async ({ data, type }) => {
       endpoint = '/createPostVideo';
       break;
     default:
-      // Assuming 'text' is the default type
       endpoint = '/createPost';
       break;
   }
+
   const reqdata = await axios.post(
     `${process.env.REACT_APP_BACKEND_URL}/api/v1/posts${endpoint}`,
     data,
     {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
       withCredentials: true,
     }
   );

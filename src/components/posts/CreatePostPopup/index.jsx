@@ -59,42 +59,44 @@ function CreatePostPopup({ user }) {
     }
   }, [data, isSuccess]);
 
-const postSubmit = () => {
-  let form = new FormData();
-  form.append("type", createPost.type);
-  form.append("text", createPost.postText);
+  const postSubmit = () => {
+    let form = new FormData();
 
-  if (createPost.type === "background") {
-    form.append("background", createPost.background);
-  }
+    form.append("type", createPost.type);
+    form.append("text", createPost.postText);
 
-  if (postImage) {
-    const postImages = createPost.images.map((img) => {
-      return dataURItoBlob(img);
-    });
-    postImages.forEach((image, index) => {
-      form.append("images", image, `image${index}.png`);
-    });
-  }
+    if (createPost.type === "background") {
+      form.append("background", createPost.background);
+    }
 
-  if (postVideo) {
+    if (postImage) {
+      const postImages = createPost.images.map((img) => {
+        return dataURItoBlob(img);
+      });
+      postImages.forEach((image, index) => {
+        form.append("images", image, `image${index}.png`);
+      });
+    }
 
-    const postVid = createPost.video.map((vid) => {
-      return dataURItoBlob(vid);
-    });
-    postVid.forEach((video, index) => {
-      if (video instanceof Blob || video instanceof File) {
-        form.append("video", video, `video${index}.mp4`);
-      } else {
-        console.log("Video file is not a Blob or File: ", video);
-      }
-    });
-  }
+    if (postVideo) {
+      const postVid = createPost.video.map((vid) => {
+        return dataURItoBlob(vid);
+      });
+      postVid.forEach((video, index) => {
+        if (video instanceof Blob || video instanceof File) {
+          form.append("video", video, `video${index}.mp4`);
+        } else {
+          console.log("Video file is not a Blob or File: ", video);
+        }
+      });
+    }
 
-
-  mutate({ data: form, type: createPost.type });
-};
-
+    if (createPost.type === "image") {
+      mutate({ data: form, type: "image" });
+    } else {
+      mutate({ data: Object.fromEntries(form), type: createPost.type });
+    }
+  };
 
   return (
     <Portal>
@@ -113,7 +115,12 @@ const postSubmit = () => {
               </div>
             </div>
             <div className={classes.profile}>
-              <img secure src={user.photo} alt={user.name} className={classes.photo} />
+              <img
+                secure
+                src={user.photo}
+                alt={user.name}
+                className={classes.photo}
+              />
               <div className={classes.profile_1}>
                 <span className={classes.user_name}>
                   {`${user.first_name} ${user.last_name}`}{" "}
