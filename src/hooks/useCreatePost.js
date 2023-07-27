@@ -4,12 +4,25 @@ import { queryClient } from "./../App";
 
 const CreatePost = async ({ data, type }) => {
   let endpoint;
+  let headers = {
+    'withCredentials': true,
+  };
+
+  const formData = new FormData();
+
   switch(type) {
     case 'image':
       endpoint = '/createPost/images';
       break;
     case 'video':
       endpoint = '/createPostVideo';
+      // Append each property in your data object to the form data
+      for (const property in data) {
+        formData.append(property, data[property]);
+      }
+      // Set the 'Content-Type' to 'multipart/form-data' only for videos
+      headers['Content-Type'] = 'multipart/form-data';
+      data = formData;
       break;
     default:
       endpoint = '/createPost';
@@ -20,12 +33,13 @@ const CreatePost = async ({ data, type }) => {
     `${process.env.REACT_APP_BACKEND_URL}/api/v1/posts${endpoint}`,
     data,
     {
-      withCredentials: true,
+      headers: headers,
     }
   );
 
   return reqdata;
 };
+
 
 export const useCreatePost = (usernameID) => {
   return useMutation({
