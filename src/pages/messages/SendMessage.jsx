@@ -83,7 +83,7 @@ function SendMessage({
         setIsLoading(false); // Set loading state to false when the image has been fully processed
         setTimeout(() => {
           window.location.reload();
-        }, 1500);
+        }, 2000);
       }
 
       sendMessage({
