@@ -56,7 +56,7 @@ export default function LoginFooter() {
       </div>
       <div className={styles.warp}>
         <Link to="/" style={{ fontSize: "12px", marginTop: "10px" }}>
-          facebook © 2023
+          facebook clone © 2023
         </Link>
       </div>
     </footer>
