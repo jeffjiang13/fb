@@ -24,16 +24,16 @@ export default function LoginFooter() {
       <div className={styles.warp}>
         <Link to="/">Sign Up</Link>
         <Link to="/">Log in</Link>
-        <Link to="/">Messenger</Link>
-        <Link to="/">facebook Lite</Link>
+        <Link to="/">Connecter</Link>
+        <Link to="/">connect Lite</Link>
         <Link to="/">Watch</Link>
         <Link to="/">Places</Link>
         <Link to="/">Games</Link>
         <Link to="/">Marketplace</Link>
-        <Link to="/">facebook Pay</Link>
+        <Link to="/">connect Pay</Link>
         <Link to="/">Oculus</Link>
         <Link to="/">Portal</Link>
-        <Link to="/">Instagram</Link>
+        <Link to="/">Quicktele</Link>
         <Link to="/">Bulletin</Link>
         <Link to="/">Local</Link>
         <Link to="/">Fundraisers</Link>
@@ -56,7 +56,7 @@ export default function LoginFooter() {
       </div>
       <div className={styles.warp}>
         <Link to="/" style={{ fontSize: "12px", marginTop: "10px" }}>
-          facebook clone © 2023
+          connect © 2025
         </Link>
       </div>
     </footer>

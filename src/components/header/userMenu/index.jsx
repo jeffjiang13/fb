@@ -65,7 +65,7 @@ export default function UserMenu({ user, setShowUserMenu }) {
             </div>
             <div className={styles.mmenu_col}>
               <div className={styles.mmenu_span1}>Give feedback</div>
-              <div className={styles.mmenu_span2}>Help us improve facebook</div>
+              <div className={styles.mmenu_span2}>Help us improve connect</div>
             </div>
           </div>
           <div className={styles.mmenu_splitter}></div>

@@ -121,7 +121,7 @@ export default function HomeLeft({ user }) {
         <Link to="/">Cookies</Link> <span>• </span> <br />
         <Link to="/">More </Link>
         <span>• </span>
-        facebook clone © 2023 by JJ, All Rights Reserved
+        connect © 2025 by JJ, All Rights Reserved
       </div>
     </div>
   );

@@ -220,7 +220,7 @@ function Left({ soketSlice, user, chatId }) {
             ref={input}
             type="text"
             name="search"
-            placeholder="Search Messenger"
+            placeholder="Search Connecter"
             className={styles.input}
             onFocus={() => {
               setShowIcon(false);

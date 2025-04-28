@@ -54,7 +54,7 @@ function Header() {
       <div className={styles.left}>
         <Link to="/" className={styles.logo}>
           <div className={styles.circle}>
-            <img secure src="/2021_Facebook_icon.svg" width={200} />
+            <img secure src="/connect_icon.png" width={45} />
           </div>
         </Link>
         <div
@@ -69,7 +69,7 @@ function Header() {
             ref={input}
             type="text"
             name="search"
-            placeholder="Search Facebook"
+            placeholder="Search Connect"
             className={styles.input}
             onFocus={() => {
               setShowIcon(false);

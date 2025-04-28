@@ -67,8 +67,12 @@
 
 .contacts_list {
   padding: 5px;
+  max-height: 50vh; /* or calc(100vh - 300px) depending on your layout */
+  overflow-y: auto;
 }
-
+.contacts_list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
 .contact {
   display: flex;
   align-items: center;

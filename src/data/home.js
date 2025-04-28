@@ -6,8 +6,8 @@ export const left = [
 
   },
   {
-    text: "Messenger",
-    img: "messenger",
+    text: "Connecter",
+    img: "connecter",
     link: "/messages",
   },
   {

@@ -25,7 +25,7 @@ export default function DisplayAccessibility({ setVisible }) {
         <div className={styles.mmenu_col}>
           <span className={styles.mmenu_span1}>Dark Mode</span>
           <span className={styles.mmenu_span2}>
-            Adjust the appearance of Facebook to reduce glare and give your eyes
+            Adjust the appearance of Connect to reduce glare and give your eyes
             a break.
           </span>
         </div>

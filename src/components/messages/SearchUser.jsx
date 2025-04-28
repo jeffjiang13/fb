@@ -89,7 +89,7 @@ function SearchUser({ color, showSearchMenu, setShowSearchMenu }) {
           <input
             className={classes.input}
             type="text"
-            placeholder="Search Messenger"
+            placeholder="Search Connecter"
             ref={input}
             onChange={(e) => setDebouncedTerm(e.target.value)}
             value={debouncedTerm}

@@ -33,7 +33,7 @@ export const menu = [
   {
     name: "Pages",
     icon: "pages",
-    description: "Discover and connect with businesses on Facebook.",
+    description: "Discover and connect with businesses on Connect.",
   },
   {
     name: "Gaming Video",
@@ -64,12 +64,12 @@ export const menu = [
   {
     name: "Recent Ad Activity",
     icon: "recent",
-    description: "See all the ads you interacted with on Facebook.",
+    description: "See all the ads you interacted with on Connect.",
   },
   {
     name: "Memories",
     icon: "memories",
-    description: "Browse your old photos, videos and posts on Facebook.",
+    description: "Browse your old photos, videos and posts on Connect.",
   },
   {
     name: "Saved",
@@ -115,8 +115,8 @@ export const menu = [
     description: "Donate and raise money for nonprofits and personal causes.",
   },
   {
-    name: "Messenger",
-    icon: "messenger",
+    name: "Connecter",
+    icon: "connecter",
     description: "Chat instantly with your friends and connections.",
   },
   {

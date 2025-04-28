@@ -16,7 +16,7 @@ const token = Cookies.get("token") ? JSON.parse(Cookies.get("token")) : null;
 
 if (token) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-const root = ReactDOMClient.createRoot(document.getElementById("facebook"));
+const root = ReactDOMClient.createRoot(document.getElementById("connect"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
